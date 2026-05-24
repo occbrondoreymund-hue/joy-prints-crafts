@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Joy Prints & Crafts · Pink Print Studio | Custom Stationery & Art</title>
-  <!-- Google Fonts & simple reset for modern look -->
+  <!-- Google Fonts & modern reset -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -20,6 +20,88 @@
       color: #3e2a33;
       line-height: 1.4;
       scroll-behavior: smooth;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* DARK MODE (pink dark theme) */
+    body.dark {
+      background: #1a1218;
+      color: #f3e0e8;
+    }
+
+    body.dark .product-card {
+      background: #2b1e24;
+      border-color: #4f3240;
+    }
+
+    body.dark .card-img {
+      background: linear-gradient(135deg, #2d2028, #251a21);
+    }
+
+    body.dark .product-desc,
+    body.dark .product-title {
+      color: #f5e2eb;
+    }
+
+    body.dark .badge-category,
+    body.dark .category-badge-img {
+      background: #4b2d3a;
+      color: #ffbdd4;
+    }
+
+    body.dark .filter-btn {
+      background: #2e1f26;
+      color: #ffc0db;
+      border-color: #623e50;
+    }
+
+    body.dark .filter-btn.active {
+      background: #e75480;
+      color: white;
+    }
+
+    body.dark .stats-bar {
+      border-bottom-color: #623e50;
+    }
+
+    body.dark .product-counter {
+      background: #322129;
+      color: #ffbdd4;
+    }
+
+    body.dark .detail-link {
+      background: #2e1f26;
+      border-color: #e75480;
+      color: #ffbcd9;
+    }
+
+    body.dark .detail-link:hover {
+      background: #e75480;
+      color: white;
+    }
+
+    body.dark .footer {
+      border-top-color: #623e50;
+      color: #c28eaa;
+    }
+
+    body.dark .filter-hint {
+      color: #cf9bb3;
+    }
+
+    body.dark .product-modal {
+      background: #2a1c23;
+      border-color: #e75480;
+    }
+
+    body.dark .modal-category {
+      background: #4b2d3a;
+      color: #ffc2da;
+    }
+
+    body.dark .modal-feature {
+      background: #322129;
+      color: #f5b7cf;
     }
 
     :root {
@@ -28,30 +110,56 @@
       --pink-deep: #f36bae;
       --pink-rose: #e75480;
       --pink-dust: #fbc4d8;
-      --pink-shadow: rgba(243, 107, 174, 0.2);
-      --gray-text: #4a2c3a;
       --white: #ffffff;
-      --transition-smooth: all 0.4s cubic-bezier(0.2, 0.95, 0.4, 1.05);
-      --card-transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.1), 
-                          box-shadow 0.4s ease, 
-                          border-color 0.2s ease;
     }
 
-    .container {
-      max-width: 1280px;
+    /* MAIN CONTAINER */
+    .main-content {
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 32px;
     }
 
-    /* header / hero */
+    /* hero section - reduced animations, only one main hero */
     .hero {
       text-align: center;
-      padding: 2.5rem 0 1.8rem 0;
-      animation: fadeDown 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      padding: 1.2rem 0 0.8rem 0;
+      animation: fadeDown 0.6s ease forwards;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .logo {
+      height: auto;
+      width: 130px;
+      max-width: 130px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 16px rgba(231,84,128,0.2));
+      transition: transform 0.25s ease, filter 0.25s ease;
+      animation: logoFloatGlow 0.8s ease forwards;
+    }
+
+    @keyframes logoFloatGlow {
+      0% { opacity: 0; transform: scale(0.8) translateY(20px); filter: drop-shadow(0 0 0px rgba(231,84,128,0)); }
+      70% { opacity: 1; transform: scale(1.02) translateY(-2px); filter: drop-shadow(0 8px 16px rgba(231,84,128,0.3)); }
+      100% { opacity: 1; transform: scale(1) translateY(0); filter: drop-shadow(0 8px 16px rgba(231,84,128,0.2)); }
+    }
+
+    .logo:hover {
+      transform: scale(1.03);
+      filter: drop-shadow(0 12px 24px rgba(231,84,128,0.35));
+      cursor: pointer;
     }
 
     .hero h1 {
-      font-size: 3rem;
+      font-size: clamp(2rem, 6vw, 3rem);
       font-weight: 800;
       background: linear-gradient(135deg, #e75480, #ff9acb, #fbc4d8);
       -webkit-background-clip: text;
@@ -60,8 +168,13 @@
       letter-spacing: -0.5px;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 0.5rem;
+      gap: 8px;
+      animation: textSlideGlow 0.55s ease 0.1s both;
+    }
+
+    @keyframes textSlideGlow {
+      0% { opacity: 0; transform: translateX(-12px); filter: blur(2px); }
+      100% { opacity: 1; transform: translateX(0); filter: blur(0); }
     }
 
     .hero h1 i {
@@ -69,315 +182,347 @@
       -webkit-background-clip: unset;
       background-clip: unset;
       color: #e75480;
-      font-size: 2.4rem;
-      transition: transform 0.3s ease;
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      transition: transform 0.2s ease;
     }
 
     .hero h1:hover i {
-      transform: rotate(5deg) scale(1.05);
+      transform: scale(1.05);
     }
 
     .hero p {
-      max-width: 620px;
-      margin: 1rem auto 0;
+      max-width: 600px;
+      margin: 0.6rem auto 0;
       color: #b35c7c;
       font-weight: 450;
-      background: rgba(255, 255, 245, 0.6);
-      backdrop-filter: blur(3px);
-      padding: 0.6rem 1.5rem;
+      background: rgba(255, 255, 245, 0.7);
+      backdrop-filter: blur(4px);
+      padding: 0.4rem 1.2rem;
       border-radius: 60px;
       display: inline-block;
+      font-size: 0.9rem;
+      animation: fadeUpText 0.5s ease 0.2s both;
     }
 
-    /* filter bar */
+    @keyframes fadeUpText {
+      0% { opacity: 0; transform: translateY(8px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SEARCH & FILTER BAR */
+    .search-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 2rem 0 1rem;
+      align-items: center;
+    }
+
+    .search-wrapper {
+      position: relative;
+      flex: 1;
+      max-width: 280px;
+    }
+
+    .search-wrapper i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #e75480;
+      font-size: 0.9rem;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 0.6rem 1rem 0.6rem 2.4rem;
+      border-radius: 200px;
+      border: 1px solid #ffc0db;
+      background: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    body.dark #searchInput {
+      background: #2e1f26;
+      border-color: #e75480;
+      color: #ffeef4;
+    }
+
+    #searchInput:focus {
+      border-color: #e75480;
+      box-shadow: 0 0 0 3px rgba(231,84,128,0.2);
+    }
+
     .filter-bar {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 12px;
-      margin: 1.5rem 0 2rem;
     }
 
     .filter-btn {
       background: white;
       border: none;
-      padding: 0.65rem 1.7rem;
+      padding: 0.6rem 1.6rem;
       border-radius: 200px;
       font-weight: 600;
       font-size: 0.9rem;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.4, 1);
+      transition: all 0.2s ease;
       color: #b3416e;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
       border: 1px solid #ffc0db;
       font-family: inherit;
-      letter-spacing: -0.2px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .filter-btn::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(243, 107, 174, 0.3);
-      transform: translate(-50%, -50%);
-      transition: width 0.45s ease, height 0.45s ease;
-    }
-
-    .filter-btn:active::after {
-      width: 200px;
-      height: 200px;
-      opacity: 0;
-    }
-
-    .filter-btn i {
-      margin-right: 8px;
-      font-size: 0.85rem;
-      transition: transform 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .filter-btn.active {
       background: var(--pink-deep);
       border-color: var(--pink-deep);
       color: white;
-      box-shadow: 0 10px 20px rgba(231, 84, 128, 0.3);
-      transform: scale(1.02);
+      box-shadow: 0 6px 14px rgba(231, 84, 128, 0.25);
+    }
+
+    .filter-btn:focus-visible {
+      outline: 3px solid #f36bae;
+      outline-offset: 2px;
     }
 
     .filter-btn:hover:not(.active) {
       background: #ffecf3;
       border-color: #ff9acb;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 18px rgba(231, 84, 128, 0.15);
+      transform: translateY(-1px);
     }
 
-    .filter-btn:hover i {
-      transform: translateY(-1px) scale(1.05);
+    /* DARK MODE TOGGLE BUTTON */
+    .dark-toggle {
+      background: white;
+      border: 1px solid #ffc0db;
+      border-radius: 40px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
     }
 
-    /* stats bar - show total products visible */
+    body.dark .dark-toggle {
+      background: #2e1f26;
+      border-color: #e75480;
+      color: #ffd9e7;
+    }
+
+    /* STATS BAR */
     .stats-bar {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       flex-wrap: wrap;
-      margin: 0.2rem 0 1rem;
+      gap: 10px;
+      margin: 0 0 1.5rem;
       border-bottom: 1.5px dashed #ffcddf;
-      padding-bottom: 0.75rem;
-      transition: all 0.3s ease;
+      padding-bottom: 0.7rem;
     }
 
     .product-counter {
       background: #ffeef4;
-      padding: 0.3rem 1rem;
+      padding: 0.3rem 1.2rem;
       border-radius: 50px;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       font-weight: 500;
       color: #c95a86;
-      transition: background 0.2s, transform 0.2s;
     }
 
-    .product-counter i {
-      margin-right: 6px;
-    }
-
-    .filter-hint {
-      font-size: 0.75rem;
-      color: #b56f88;
-      opacity: 0.8;
-    }
-
-    /* products grid - SMOOTH GRID & CARD APPEARANCE */
+    /* PRODUCT GRID - responsive & better layout */
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 2rem;
-      margin: 1.5rem 0 3rem;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin: 1.2rem 0 2.5rem;
     }
 
-    /* modern product card with PRO-LEVEL transitions */
+    /* product card - clickable full area */
     .product-card {
       background: var(--white);
-      border-radius: 36px;
+      border-radius: 24px;
       overflow: hidden;
-      transition: var(--card-transition);
-      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1);
+      box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.08);
       border: 1px solid rgba(255, 170, 200, 0.5);
-      backdrop-filter: blur(0px);
       display: flex;
       flex-direction: column;
-      will-change: transform;
+      cursor: pointer;
       opacity: 0;
-      transform: translateY(20px) scale(0.98);
-      animation: cardReveal 0.55s cubic-bezier(0.2, 0.9, 0.4, 1.2) forwards;
+      transform: translateY(8px);
+      animation: cardReveal 0.45s ease forwards;
     }
 
-    /* staggered animation delay via style attribute or dynamic JS, but we also set default */
     @keyframes cardReveal {
-      0% {
-        opacity: 0;
-        transform: translateY(24px) scale(0.96);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      0% { opacity: 0; transform: translateY(8px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     .product-card:hover {
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 32px 44px -16px rgba(231, 84, 128, 0.3);
-      border-color: #ff9bc1;
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -12px rgba(231, 84, 128, 0.2), 0 0 0 1px rgba(231,84,128,0.2);
     }
 
+    /* card image */
     .card-img {
-      height: 230px;
-      background: linear-gradient(125deg, #fff0f7, #ffe6f0);
+      height: 200px;
+      background: linear-gradient(135deg, #fff0f7, #ffe6f0);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      font-size: 3.2rem;
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      font-size: 3rem;
       position: relative;
     }
 
-    .product-card:hover .card-img {
-      background: #fff1f9;
-      transform: scale(1.01);
-    }
-
-    .card-img i, .card-img span {
-      filter: drop-shadow(0 4px 6px rgba(231,84,128,0.15));
-      transition: transform 0.3s ease;
-    }
-
-    .product-card:hover .card-img i {
-      transform: translateY(-3px) rotate(2deg);
+    .preview-icon {
+      font-size: 2.4rem;
+      color: #e75480;
     }
 
     .category-badge-img {
       position: absolute;
-      top: 14px;
-      right: 16px;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(6px);
+      top: 12px;
+      right: 12px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(4px);
       padding: 4px 12px;
-      border-radius: 80px;
+      border-radius: 60px;
       font-size: 0.7rem;
-      font-weight: 600;
+      font-weight: 700;
       color: #e75480;
-      letter-spacing: -0.2px;
-      transition: all 0.2s;
     }
 
     .card-content {
-      padding: 1.4rem 1.3rem 1.5rem;
+      padding: 1rem 1rem 1.1rem;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
 
     .product-title {
-      font-size: 1.35rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
       color: #3a2631;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
     }
 
     .badge-category {
       background: #ffe2ef;
       color: #c95a86;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 700;
       padding: 0.25rem 0.8rem;
       border-radius: 50px;
-      letter-spacing: -0.1px;
-      transition: all 0.2s;
-    }
-
-    .product-card:hover .badge-category {
-      background: #ffd6e8;
-      transform: scale(1.02);
+      white-space: nowrap;
     }
 
     .product-desc {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: #72566a;
-      margin: 0.65rem 0 1rem;
+      margin: 0.5rem 0 0.9rem;
       line-height: 1.45;
       flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .action-row {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      margin-top: 0.4rem;
+      justify-content: flex-start;
+      margin-top: 0.2rem;
       border-top: 1px solid #ffe2ef;
-      padding-top: 1rem;
+      padding-top: 0.8rem;
     }
 
     .detail-link {
       background: none;
       border: 1.5px solid #ffbed6;
-      padding: 0.45rem 1.3rem;
+      padding: 0.45rem 1.2rem;
       border-radius: 60px;
       font-size: 0.75rem;
       font-weight: 600;
       color: #e75480;
       cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+      transition: all 0.2s ease;
       font-family: inherit;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       background: white;
     }
 
-    .detail-link i {
-      font-size: 0.7rem;
-      transition: transform 0.2s ease;
+    .detail-link:focus-visible {
+      outline: 3px solid #e75480;
+      outline-offset: 2px;
     }
 
     .detail-link:hover {
       background: #e75480;
       border-color: #e75480;
       color: white;
-      transform: scale(0.97) translateY(-1px);
-      box-shadow: 0 8px 14px rgba(231, 84, 128, 0.3);
+      transform: translateY(-2px);
     }
 
-    .detail-link:hover i {
-      transform: translateX(3px);
+    /* responsive tables */
+    @media (max-width: 1200px) {
+      .products-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
+      .card-img { height: 170px; }
+    }
+    @media (max-width: 640px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .main-content { padding: 0 16px; }
+      .filter-btn { padding: 0.45rem 1rem; font-size: 0.75rem; }
+      .card-img { height: 150px; }
+    }
+    @media (max-width: 480px) {
+      /* 2 cards per row, never 1fr */
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+      .card-img { height: 140px; font-size: 2rem; }
+      .product-title { font-size: 0.9rem; }
     }
 
-    /* modal with high quality transitions */
+    /* MODAL STYLES with smooth transform origin */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(58, 38, 49, 0.75);
-      backdrop-filter: blur(8px);
+      background-color: rgba(58, 38, 49, 0.85);
+      backdrop-filter: blur(6px);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 2000;
       visibility: hidden;
       opacity: 0;
-      transition: visibility 0.2s, opacity 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+      transition: visibility 0.2s, opacity 0.25s ease;
+      padding: 20px;
     }
 
     .modal-overlay.active {
@@ -387,16 +532,17 @@
 
     .product-modal {
       background: #fffef7;
-      max-width: 480px;
-      width: 90%;
-      border-radius: 48px;
-      padding: 1.8rem 2rem 2rem;
+      max-width: 450px;
+      width: 100%;
+      border-radius: 40px;
+      padding: 1.5rem;
       text-align: center;
-      box-shadow: 0 35px 45px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 30px 40px rgba(0, 0, 0, 0.2);
       border: 1px solid #ffcade;
-      transform: scale(0.92) translateY(12px);
-      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.2), opacity 0.3s;
+      transform: scale(0.94) translateY(12px);
+      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.2), opacity 0.25s;
       opacity: 0;
+      transform-origin: center;
     }
 
     .modal-overlay.active .product-modal {
@@ -405,147 +551,99 @@
     }
 
     .modal-icon {
-      font-size: 4rem;
-      margin-bottom: 12px;
+      font-size: 3rem;
+      margin-bottom: 10px;
       background: #ffeef5;
-      width: 90px;
-      height: 90px;
+      width: 80px;
+      height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 60px;
+      border-radius: 50%;
       margin-left: auto;
       margin-right: auto;
-      transition: transform 0.25s ease;
-    }
-
-    .product-modal:hover .modal-icon {
-      transform: scale(1.02) rotate(1deg);
-    }
-
-    .modal-product-name {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin: 0.7rem 0 0.5rem;
-      color: #4d2d3c;
-    }
-
-    .modal-category {
-      background: #ffe2ef;
-      display: inline-block;
-      padding: 4px 18px;
-      border-radius: 50px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #bc6f8c;
-    }
-
-    .modal-desc {
-      margin: 1rem 0;
-      color: #614952;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    .modal-feature {
-      background: #fff3f8;
-      border-radius: 36px;
-      padding: 0.8rem;
-      font-size: 0.85rem;
-      color: #bc6f8c;
-      margin: 1rem 0;
-      transition: background 0.2s;
     }
 
     .close-modal-btn {
       background: #f36bae;
       border: none;
-      padding: 0.6rem 1.6rem;
+      padding: 0.6rem 1.5rem;
       border-radius: 50px;
       color: white;
       font-weight: 600;
-      margin-top: 0.4rem;
       cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      transition: all 0.2s;
+    }
+    .close-modal-btn:focus-visible {
+      outline: 3px solid #e75480;
     }
 
-    .close-modal-btn:hover {
-      background: #d45592;
-      transform: scale(0.97);
-      box-shadow: 0 6px 14px rgba(212, 85, 146, 0.3);
-    }
-
-    /* empty state */
     .no-products {
       text-align: center;
-      padding: 3rem;
+      padding: 2rem;
       background: rgba(255, 230, 240, 0.8);
-      border-radius: 60px;
-      margin: 2rem 0;
+      border-radius: 50px;
+      margin: 1rem 0;
       color: #c56183;
-      font-weight: 500;
-      animation: fadeUpEmpty 0.5s ease;
-    }
-
-    @keyframes fadeUpEmpty {
-      from { opacity: 0; transform: translateY(18px);}
-      to { opacity: 1; transform: translateY(0);}
+      grid-column: 1 / -1;
     }
 
     .footer {
       text-align: center;
-      padding: 2rem 0 2.5rem;
+      padding: 1.5rem 0 2rem;
       border-top: 1px solid #ffd0e1;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
       color: #c17a97;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
     }
 
     @keyframes fadeDown {
-      0% { opacity: 0; transform: translateY(-20px);}
+      0% { opacity: 0; transform: translateY(-12px);}
       100% { opacity: 1; transform: translateY(0);}
     }
-
-    /* smooth grid exit/enter transition handled by render but subtle crossfade via opacity */
-    .products-grid {
-      transition: opacity 0.2s ease;
-    }
-
-    @media (max-width: 640px) {
-      .hero h1 { font-size: 2.2rem;}
-      .filter-btn { padding: 0.45rem 1.1rem; font-size: 0.75rem;}
-      .container { padding: 0 18px;}
-      .product-modal { padding: 1.5rem;}
+    button:focus, a:focus, .filter-btn:focus, .detail-link:focus {
+      outline: 3px solid #f36bae;
+      outline-offset: 2px;
     }
   </style>
 </head>
 <body>
-
-<div class="container">
+<div class="main-content">
   <div class="hero">
-    <h1><i class="fas fa-palette"></i> Joy Prints & Crafts</h1>
+    <div class="logo-wrapper">
+      <img src="/image/jpc_logo.png" alt="Joy Prints & Crafts Logo" class="logo" onerror="this.onerror=null; this.style.display='none';">
+      <h1><i class="fas fa-heart"></i> Joy Prints & Crafts</h1>
+    </div>
+    <p><i class="fas fa-feather-alt"></i> Fast • Affordable • High-Quality Custom Printing</p>
   </div>
 
-  <div class="filter-bar" id="filterBar">
-    <button class="filter-btn active" data-filter="all"><i class="fas fa-crown"></i> All Treasures</button>
-    <button class="filter-btn" data-filter="stationery"><i class="fas fa-envelope-open-text"></i> Stationery</button>
-    <button class="filter-btn" data-filter="poster"><i class="fas fa-image"></i> Art Posters</button>
-    <button class="filter-btn" data-filter="photo"><i class="fas fa-camera-retro"></i> Photo Prints</button>
-    <button class="filter-btn" data-filter="cards"><i class="fas fa-gift"></i> Greeting Cards</button>
+  <div class="search-filter-bar">
+    <div class="search-wrapper">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Search treasures... e.g., poster, sticker">
+    </div>
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" data-filter="all"><i class="fas fa-crown"></i> All</button>
+      <button class="filter-btn" data-filter="stationery"><i class="fas fa-envelope-open-text"></i> Stationery</button>
+      <button class="filter-btn" data-filter="poster"><i class="fas fa-image"></i> Posters</button>
+      <button class="filter-btn" data-filter="photo"><i class="fas fa-camera-retro"></i> Photo Prints</button>
+      <button class="filter-btn" data-filter="cards"><i class="fas fa-gift"></i> Cards</button>
+    </div>
+    <button class="dark-toggle" id="darkModeToggle" aria-label="Dark mode"><i class="fas fa-moon"></i> Dark</button>
   </div>
 
-  <div class="stats-bar" id="statsBar">
-    <div class="product-counter"><i class="fas fa-heart"></i> <span id="productCount">0</span> lovely items</div>
-    <div class="filter-hint"><i class="fas fa-info-circle"></i> click "view details" to explore each piece</div>
+  <div class="stats-bar">
+    <div class="product-counter"><i class="fas fa-heart"></i> <span id="productCount">0</span> treasures</div>
+    <div class="filter-hint"><i class="fas fa-info-circle"></i> tap any card to see details ✨</div>
   </div>
 
   <div id="productsGrid" class="products-grid"></div>
-</div>
 
-<footer class="footer">
-  <p>✨ Every print carries a touch of sweetness ✨ | Custom orders @JoyPrints&Crafts</p>
-  <p style="margin-top: 6px;"><i class="fas fa-heart" style="color:#f36bae;"></i> Eco-friendly inks · Fast turnaround · Personalized design</p>
-</footer>
+  <footer class="footer">
+    <p>✨ Every print carries a touch of sweetness ✨ | Custom orders @JoyPrints&Crafts</p>
+    <p style="margin-top: 6px;"><i class="fas fa-heart" style="color:#f36bae;"></i> Eco-friendly inks · Fast turnaround · Personalized design</p>
+  </footer>
+</div>
 
 <div id="productModal" class="modal-overlay">
   <div class="product-modal">
@@ -554,168 +652,172 @@
     <span class="modal-category" id="modalCategory"></span>
     <p class="modal-desc" id="modalDesc"></p>
     <div class="modal-feature" id="modalFeature">
-      <i class="fas fa-star-of-life"></i> Made with sustainable paper + vegan inks
+      <i class="fas fa-star-of-life"></i> Premium craftsmanship
     </div>
-    <button class="close-modal-btn" id="closeModalBtn"><i class="fas fa-heart"></i> Close & keep dreaming</button>
+    <button class="close-modal-btn" id="closeModalBtn"><i class="fas fa-heart"></i> Close</button>
   </div>
 </div>
 
 <script>
-  // product catalog — view-only dreamy collection
   const products = [
     { id: 1, name: "Sakura Letter Set", category: "stationery", description: "Japanese imported art paper, soft cherry blossom pink with gold foil. Includes 10 sheets + 5 envelopes.", icon: "🌸", material: "Cotton blend paper · hand-stitched envelope" },
     { id: 2, name: "Acrylic Photo Print", category: "photo", description: "High-definition double-sided printing, crystal clear finish. Comes with an adorable mini stand.", icon: "🖼️", material: "Premium acrylic + UV protection" },
     { id: 3, name: "Macaron Sticky Notes", category: "stationery", description: "Three-color inner pages, tearable design, soft pastel cover for daily jottings.", icon: "🍬", material: "Recycled adhesive paper" },
     { id: 4, name: "Polaroid Style Prints", category: "photo", description: "Vintage white or pink border available. Each photo becomes a little memory. Set of 6.", icon: "📸", material: "Matte finish · archival quality" },
     { id: 5, name: "Pink Art Poster", category: "poster", description: "Watercolor florals / abstract sweet series. A2 size, matte paper, includes poster tube.", icon: "🎨", material: "Heavyweight matte 200gsm" },
-    { id: 6, name: "Handmade Pop-up Card", category: "cards", description: "Handcrafted 3D pop-up surprise, customizable message inside. Perfect for birthdays or anniversaries.", icon: "💌", material: "Hand-assembled with love" },
+    { id: 6, name: "Handmade Pop-up Card", category: "cards", description: "Handcrafted 3D pop-up surprise, customizable message inside. Perfect for birthdays.", icon: "💌", material: "Hand-assembled with love" },
     { id: 7, name: "Textured Postcard Set", category: "cards", description: "8 unique designs, cotton paper texture with hand-drawn romantic style.", icon: "📮", material: "100% cotton rag paper" },
-    { id: 8, name: "Wall Art Print", category: "poster", description: "Nordic minimalist pink illustrations, perfect for modern interiors. Framing service available.", icon: "🖌️", material: "Archival ink · FSC-certified" },
-    { id: 9, name: "Cute Sticker Pack", category: "stationery", description: "Waterproof PET stickers. 20 mixed designs including desserts, animals, and journal elements.", icon: "✨", material: "Vinyl waterproof + glossy" },
-    { id: 10, name: "Polaroid Photo Album", category: "photo", description: "Self-adhesive corners, holds up to 40 polaroids. Moisture-resistant cover with embroidered design.", icon: "📓", material: "Linen hardcover + acid-free pages" },
-    { id: 11, name: "Starry Invitation Card", category: "cards", description: "Shimmering starry sky theme, fold-out design. Great for parties/gatherings, personalized names available.", icon: "🌙", material: "Glitter finish + foil accents" },
-    { id: 12, name: "Hand-drawn Wall Calendar", category: "poster", description: "2026 pink-themed calendar, each month features a different治愈 illustration. Mark special dates!", icon: "📅", material: "Thick matte paper · spiral binding" }
+    { id: 8, name: "Wall Art Print", category: "poster", description: "Nordic minimalist pink illustrations, perfect for modern interiors.", icon: "🖌️", material: "Archival ink · FSC-certified" },
+    { id: 9, name: "Cute Sticker Pack", category: "stationery", description: "Waterproof PET stickers. 20 mixed designs including desserts and animals.", icon: "✨", material: "Vinyl waterproof + glossy" },
+    { id: 10, name: "Polaroid Photo Album", category: "photo", description: "Self-adhesive corners, holds up to 40 polaroids. Moisture-resistant cover.", icon: "📓", material: "Linen hardcover + acid-free pages" },
+    { id: 11, name: "Starry Invitation Card", category: "cards", description: "Shimmering starry sky theme, fold-out design. Great for parties/gatherings.", icon: "🌙", material: "Glitter finish + foil accents" },
+    { id: 12, name: "Hand-drawn Wall Calendar", category: "poster", description: "2026 pink-themed calendar, each month features a different illustration.", icon: "📅", material: "Thick matte paper · spiral binding" }
   ];
 
   const productsGrid = document.getElementById('productsGrid');
   let currentFilter = 'all';
-  let isTransitioning = false;
+  let currentSearch = '';
 
   function getCategoryLabel(cat) {
     const map = { stationery: 'Stationery', poster: 'Art Poster', photo: 'Photo Print', cards: 'Greeting Card' };
     return map[cat] || 'Special';
   }
 
-  function getPreviewIcon(emoji) {
+  function getIconClass(emoji) {
     const map = { '🌸':'fa-leaf', '🖼️':'fa-image', '🍬':'fa-candy-cane', '📸':'fa-camera', '🎨':'fa-palette', '💌':'fa-heart', '📮':'fa-envelope', '🖌️':'fa-paintbrush', '✨':'fa-star', '📓':'fa-book', '🌙':'fa-moon', '📅':'fa-calendar-alt' };
     return map[emoji] || 'fa-feather-alt';
   }
 
-  // smooth render with crossfade and staggered animations
+  function filterProducts() {
+    let filtered = products;
+    if (currentFilter !== 'all') filtered = filtered.filter(p => p.category === currentFilter);
+    if (currentSearch.trim() !== '') {
+      const search = currentSearch.toLowerCase();
+      filtered = filtered.filter(p => p.name.toLowerCase().includes(search) || p.description.toLowerCase().includes(search));
+    }
+    return filtered;
+  }
+
   function renderProducts() {
-    if (isTransitioning) return;
-    isTransitioning = true;
-    const filtered = currentFilter === 'all' ? products : products.filter(p => p.category === currentFilter);
-    const countSpan = document.getElementById('productCount');
-    if (countSpan) {
-      countSpan.innerText = filtered.length;
-      // brief pulse effect
-      countSpan.style.transform = 'scale(1.08)';
-      setTimeout(() => { if(countSpan) countSpan.style.transform = ''; }, 200);
+    const filtered = filterProducts();
+    document.getElementById('productCount').innerText = filtered.length;
+
+    if (filtered.length === 0) {
+      productsGrid.innerHTML = `<div class="no-products"><i class="fas fa-cloud-moon" style="font-size: 2rem; margin-bottom: 0.8rem; display: block;"></i> Ohh, no cuties here ~ Try another category 💖</div>`;
+      return;
     }
 
-    // fade grid out first for smoother transition
-    productsGrid.style.opacity = '0';
-    productsGrid.style.transition = 'opacity 0.2s ease';
-    
-    setTimeout(() => {
-      if (filtered.length === 0) {
-        productsGrid.innerHTML = `<div class="no-products"><i class="fas fa-cloud-moon" style="font-size: 2.5rem; margin-bottom: 1rem; display: block;"></i> Ohh, no cuties here ~ Try another category 💖<br><span style="font-size: 0.8rem;">We have many dreamy prints waiting for you</span></div>`;
-      } else {
-        productsGrid.innerHTML = filtered.map((product, idx) => {
-          const catLabel = getCategoryLabel(product.category);
-          const iconClass = getPreviewIcon(product.icon);
-          // dynamic delay for cascade (smooth staggering)
-          const animDelay = (idx % 12) * 0.03;
-          return `
-            <div class="product-card" style="animation-delay: ${animDelay}s; animation-name: cardReveal;">
-              <div class="card-img">
-                <i class="fas ${iconClass}" style="font-size: 3rem; color: #e75480;"></i>
-                <span style="font-size: 2.5rem;">${product.icon}</span>
-                <div class="category-badge-img">${catLabel}</div>
-              </div>
-              <div class="card-content">
-                <div class="product-title">
-                  <span>${product.name}</span>
-                  <span class="badge-category">${catLabel}</span>
-                </div>
-                <div class="product-desc">${product.description.substring(0, 95)}${product.description.length > 95 ? '…' : ''}</div>
-                <div class="action-row">
-                  <button class="detail-link" data-id="${product.id}"><i class="fas fa-eye"></i> View details</button>
-                </div>
-              </div>
+    productsGrid.innerHTML = filtered.map((product, idx) => {
+      const catLabel = getCategoryLabel(product.category);
+      const iconClass = getIconClass(product.icon);
+      return `
+        <div class="product-card" data-id="${product.id}" style="animation-delay: ${(idx % 10) * 0.02}s">
+          <div class="card-img">
+            <i class="fas ${iconClass} preview-icon"></i>
+            <span style="font-size: 2rem;">${product.icon}</span>
+            <div class="category-badge-img">${catLabel}</div>
+          </div>
+          <div class="card-content">
+            <div class="product-title">
+              <span>${escapeHtml(product.name)}</span>
+              <span class="badge-category">${catLabel}</span>
             </div>
-          `;
-        }).join('');
-        // attach listeners after dom injection
-        document.querySelectorAll('.detail-link').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const productId = parseInt(btn.getAttribute('data-id'));
-            const product = products.find(p => p.id === productId);
-            if (product) openProductModal(product);
-          });
+            <div class="product-desc">${escapeHtml(product.description.substring(0, 90))}${product.description.length > 90 ? '…' : ''}</div>
+            <div class="action-row">
+              <button class="detail-link" data-id="${product.id}"><i class="fas fa-eye"></i> View details</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // attach event: full card click + detail button both work (no double modal)
+    document.querySelectorAll('.product-card').forEach(card => {
+      const prodId = parseInt(card.getAttribute('data-id'));
+      card.addEventListener('click', (e) => {
+        // avoid if click originated from detail-link button already (to prevent duplicate)
+        if (e.target.closest('.detail-link')) return;
+        const product = products.find(p => p.id === prodId);
+        if (product) openProductModal(product);
+      });
+      const detailBtn = card.querySelector('.detail-link');
+      if (detailBtn) {
+        detailBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const product = products.find(p => p.id === prodId);
+          if (product) openProductModal(product);
         });
       }
-      productsGrid.style.opacity = '1';
-      isTransitioning = false;
-    }, 150);
+    });
   }
 
-  // modal handling with ultra-smooth transitions
-  const modalOverlay = document.getElementById('productModal');
-  const modalIcon = document.getElementById('modalIcon');
-  const modalName = document.getElementById('modalName');
-  const modalCategory = document.getElementById('modalCategory');
-  const modalDesc = document.getElementById('modalDesc');
-  const modalFeature = document.getElementById('modalFeature');
+  function escapeHtml(str) {
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    });
+  }
 
   function openProductModal(product) {
-    const iconClass = getPreviewIcon(product.icon);
-    modalIcon.innerHTML = `<i class="fas ${iconClass}" style="font-size: 3.2rem; color: #e75480;"></i> <span style="font-size: 2rem; margin-left: 5px;">${product.icon}</span>`;
-    modalName.innerText = product.name;
-    modalCategory.innerText = getCategoryLabel(product.category);
-    modalDesc.innerText = product.description;
-    const materialMsg = product.material ? `✨ Material: ${product.material}` : `✨ Premium quality · Limited edition print`;
-    modalFeature.innerHTML = `<i class="fas fa-crown"></i> ${materialMsg}<br><i class="fas fa-feather-alt"></i> Ready to ship worldwide + free personalization option`;
+    const iconClass = getIconClass(product.icon);
+    document.getElementById('modalIcon').innerHTML = `<i class="fas ${iconClass}" style="font-size: 2.8rem; color: #e75480;"></i> <span style="font-size: 1.8rem;">${product.icon}</span>`;
+    document.getElementById('modalName').innerText = product.name;
+    document.getElementById('modalCategory').innerText = getCategoryLabel(product.category);
+    document.getElementById('modalDesc').innerText = product.description;
+    document.getElementById('modalFeature').innerHTML = `<i class="fas fa-crown"></i> ${product.material || 'Premium quality'} · Ready to ship worldwide + personalization`;
     modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
 
+  const modalOverlay = document.getElementById('productModal');
   function closeModal() {
     modalOverlay.classList.remove('active');
+    document.body.style.overflow = '';
   }
 
-  function initFilters() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
+  function initFiltersAndSearch() {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        if (isTransitioning) return;
         const filterValue = btn.getAttribute('data-filter');
         if (!filterValue || currentFilter === filterValue) return;
-        filterBtns.forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         currentFilter = filterValue;
         renderProducts();
-        setTimeout(() => {
-          document.getElementById('productsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 200);
       });
     });
-  }
 
-  function bindModalEvents() {
-    const closeBtn = document.getElementById('closeModalBtn');
-    closeBtn.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) closeModal();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal();
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value;
+      renderProducts();
     });
   }
 
-  // small additional style for nice micro-interactions
-  const styleAdd = document.createElement('style');
-  styleAdd.textContent = `
-    ::selection { background: #ffbfd6; color: #ac4a6e; }
-    .detail-link:active { transform: scale(0.95); }
-  `;
-  document.head.appendChild(styleAdd);
+  // dark mode toggle with class on body
+  const darkToggle = document.getElementById('darkModeToggle');
+  darkToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    const icon = darkToggle.querySelector('i');
+    if (document.body.classList.contains('dark')) {
+      icon.classList.remove('fa-moon');
+      icon.classList.add('fa-sun');
+      darkToggle.innerHTML = '<i class="fas fa-sun"></i> Light';
+    } else {
+      icon.classList.remove('fa-sun');
+      icon.classList.add('fa-moon');
+      darkToggle.innerHTML = '<i class="fas fa-moon"></i> Dark';
+    }
+  });
+
+  document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal(); });
 
   renderProducts();
-  initFilters();
-  bindModalEvents();
-  document.title = "Joy Prints & Crafts — view-only dreamy catalog | No prices, just inspiration";
+  initFiltersAndSearch();
 </script>
 </body>
 </html>
