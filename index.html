@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Joy Prints & Crafts - Custom trophies, stationery, and art prints with interactive image galleries.">
-  <title>Joy Prints & Crafts · Premium Trophy Gallery</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description"
+    content="Joy Prints & Crafts - Custom trophies, stationery, and art prints with interactive image galleries.">
+
+  <title>Joy Prints & Crafts</title>
+
+  <link rel="icon" type="image/png" href="images/jpc_logo.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   <style>
     * {
       margin: 0;
@@ -14,96 +23,15 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       background: linear-gradient(145deg, #fff5f9 0%, #ffe6f0 100%);
       color: #3e2a33;
       line-height: 1.4;
-      scroll-behavior: smooth;
-      transition: background 0.3s ease, color 0.2s ease;
-    }
-
-    body.dark {
-      background: #120c10;
-      color: #f3e0e8;
-    }
-
-    body.dark .product-card {
-      background: #2b1e24;
-      border-color: #5a3b48;
-      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.6);
-    }
-
-    body.dark .card-img {
-      background: linear-gradient(135deg, #2d2028, #1f151c);
-    }
-
-    body.dark .product-desc,
-    body.dark .product-title {
-      color: #fae2ed;
-    }
-
-    body.dark .filter-btn {
-      background: #2e1f26;
-      color: #ffc0db;
-      border-color: #6a4557;
-    }
-
-    body.dark .filter-btn.active {
-      background: #e75480;
-      color: white;
-      box-shadow: 0 6px 14px rgba(231, 84, 128, 0.4);
-    }
-
-    body.dark .detail-link {
-      background: #2e1f26;
-      border-color: #e75480;
-      color: #ffbcd9;
-    }
-
-    body.dark .detail-link:hover {
-      background: #e75480;
-      color: white;
-    }
-
-    body.dark .dark-toggle {
-      background: #2e1f26;
-      border-color: #e75480;
-      color: #ffd9e7;
-    }
-
-    body.dark .slider-btn {
-      background: #3e2a35;
-      color: #ffc2da;
-      border-color: #e75480;
-    }
-
-    body.dark .slider-btn:hover {
-      background: #e75480;
-      color: white;
-    }
-
-    body.dark .image-counter {
-      background: rgba(30, 20, 26, 0.8);
-      color: #ffcddf;
-    }
-
-    body.dark .ribbon {
-      background: linear-gradient(135deg, #e75480, #ff7eb6);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    body.dark .action-bar {
-      background: rgba(30, 20, 28, 0.85);
-      border-color: rgba(231, 84, 128, 0.4);
-    }
-
-    body.dark .search-wrapper i {
-      color: #ff99c2;
-    }
-
-    body.dark .stats-bar {
-      border-bottom-color: #4a3440;
     }
 
     .main-content {
@@ -112,353 +40,187 @@
       padding: 0 40px;
     }
 
-    /* ========= HERO & LOGO (FIXED) ========= */
     .hero {
       text-align: center;
-      padding: 2rem 0 1rem 0;
-      animation: fadeDown 0.6s ease forwards;
+      padding: 2rem 0 1rem;
     }
 
     .logo-wrapper {
       display: flex;
-      align-items: center;
       justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 0.75rem;
+      align-items: center;
     }
 
-    /* FIXED: proper logo styling with text + optional icon */
     .brand-logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      background: linear-gradient(135deg, #ffffff, #fff0f6);
-      padding: 0.55rem 1.8rem 0.55rem 1.6rem;
-      border-radius: 100px;
-      box-shadow: 0 10px 24px rgba(231, 84, 128, 0.2);
-      border: 1px solid rgba(231, 84, 128, 0.4);
-      transition: transform 0.2s ease;
-    }
-    
-    .brand-logo:hover {
-      transform: scale(1.02);
-    }
-    
-    /* custom logo mark (hand-crafted icon) */
-    .logo-icon {
-      background: #e75480;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      color: white;
+      gap: 14px;
+      background: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: 100px;
+      border: 1px solid #ffd4e6;
+      box-shadow: 0 10px 24px rgba(231, 84, 128, 0.15);
     }
-    
+
+    .logo-image img {
+      width: 75px;
+      height: 75px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
     .logo-text {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      line-height: 1.2;
-    }
-    
-    .logo-main {
-      font-weight: 800;
-      font-size: 1.55rem;
-      letter-spacing: -0.3px;
-      background: linear-gradient(135deg, #c13b62, #e75480);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    
-    .logo-tag {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: #b34a6e;
-      background: #ffe6ef;
-      padding: 0.2rem 0.8rem;
-      border-radius: 40px;
-      margin-top: 2px;
-      letter-spacing: normal;
-    }
-    
-    body.dark .brand-logo {
-      background: #2a1c23;
-      border-color: #e75480;
-    }
-    
-    body.dark .logo-tag {
-      background: #3a2530;
-      color: #ffbfd4;
-    }
-    
-    body.dark .logo-main {
-      background: linear-gradient(135deg, #ff9bc0, #ffb3cc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    
-    body.dark .logo-icon {
-      background: #ff88b2;
-      color: #2e1f26;
     }
 
-    .hero h1 {
-      font-size: clamp(1.8rem, 4.5vw, 2.6rem);
-      font-weight: 700;
-      background: linear-gradient(135deg, #d43f6b, #e75480, #ff8cb3);
+    .logo-main {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #d43f6b, #e75480);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      letter-spacing: -0.3px;
-      margin-top: 0.25rem;
+    }
+
+    .logo-tag {
+      font-size: 0.75rem;
+      background: #ffe6ef;
+      color: #b34a6e;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      margin-top: 4px;
+      font-weight: 600;
     }
 
     .hero-sub {
-      max-width: 680px;
-      margin: 0.8rem auto 0;
+      margin-top: 1rem;
       color: #b35c7c;
-      background: rgba(255, 245, 250, 0.8);
-      backdrop-filter: blur(5px);
-      padding: 0.5rem 1.5rem;
-      border-radius: 80px;
-      display: inline-block;
-      font-size: 0.9rem;
       font-weight: 500;
     }
 
-    /* ========= PROFESSIONAL DESKTOP-FIRST ACTION BAR ========= */
+    .featured-banner {
+      background: white;
+      border: 1px solid #ffd4e6;
+      border-radius: 30px;
+      padding: 1.2rem;
+      margin: 2rem 0;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(231, 84, 128, 0.1);
+    }
+
+    .featured-banner h2 {
+      color: #e75480;
+      font-size: 1.3rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .featured-banner p {
+      color: #9b6077;
+    }
+
     .action-bar {
-      background: rgba(255, 248, 251, 0.85);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(12px);
-      border-radius: 80px;
-      padding: 0.8rem 1.8rem;
-      margin: 1.8rem 0 1.8rem;
+      border-radius: 60px;
+      padding: 1rem 1.5rem;
+      margin: 2rem 0;
+      border: 1px solid rgba(231, 84, 128, 0.2);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 1.2rem;
-      border: 1px solid rgba(231, 84, 128, 0.25);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04);
-    }
-
-    .search-section {
-      flex: 2;
-      min-width: 240px;
-    }
-
-    .search-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 380px;
-    }
-
-    .search-wrapper i {
-      position: absolute;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #e75480;
-      font-size: 1rem;
-      pointer-events: none;
-    }
-
-    #searchInput {
-      width: 100%;
-      padding: 0.9rem 1rem 0.9rem 3rem;
-      border-radius: 60px;
-      border: 1.5px solid #ffe0ed;
-      background: white;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 500;
-      outline: none;
-      transition: all 0.25s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    }
-
-    #searchInput:focus {
-      border-color: #e75480;
-      box-shadow: 0 0 0 4px rgba(231, 84, 128, 0.12);
-    }
-
-    body.dark #searchInput {
-      background: #1f161c;
-      border-color: #643e4e;
-      color: #f7e2ec;
+      gap: 1rem;
     }
 
     .filter-section {
-      flex: 4;
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 10px;
     }
 
     .filter-btn {
-      background: white;
       border: none;
-      padding: 0.65rem 1.6rem;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      color: #c44a73;
+      padding: 0.7rem 1.3rem;
+      border-radius: 50px;
+      background: white;
       border: 1px solid #ffd4e6;
-      font-family: inherit;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
+      cursor: pointer;
+      font-weight: 600;
+      color: #c44a73;
+      transition: 0.2s;
     }
 
-    .filter-btn i {
-      font-size: 0.85rem;
+    .filter-btn:hover {
+      transform: translateY(-2px);
     }
 
     .filter-btn.active {
       background: #e75480;
-      border-color: #e75480;
       color: white;
-      box-shadow: 0 6px 14px rgba(231, 84, 128, 0.3);
-      transform: translateY(-1px);
-    }
-
-    .filter-btn:hover:not(.active) {
-      background: #fff0f7;
       border-color: #e75480;
-      transform: translateY(-1px);
     }
 
-    .dark-toggle {
-      background: white;
-      border: 1.5px solid #ffd4e6;
-      border-radius: 60px;
-      padding: 0.65rem 1.5rem;
-      cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: #c44a73;
+    .search-wrapper {
+      position: relative;
+      width: 300px;
     }
 
-    .dark-toggle:hover {
-      background: #e75480;
-      border-color: #e75480;
-      color: white;
-      transform: translateY(-1px);
+    .search-wrapper i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #e75480;
     }
 
-    /* Stats Row */
+    #searchInput {
+      width: 100%;
+      padding: 0.9rem 1rem 0.9rem 2.8rem;
+      border-radius: 50px;
+      border: 1px solid #ffd4e6;
+      outline: none;
+      font-family: inherit;
+    }
+
     .stats-bar {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      margin: 0 0 2rem 0;
-      border-bottom: 2px solid #ffe2ef;
-      padding-bottom: 0.8rem;
+      margin-bottom: 2rem;
     }
 
     .product-counter {
-      background: #ffeef4;
-      padding: 0.5rem 1.8rem;
-      border-radius: 60px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #d15b89;
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      background: #ffeef4;
+      color: #d15b89;
+      padding: 0.6rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
     }
 
-    /* GRID — DESKTOP OPTIMIZED (3 cols) */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
-      margin: 1.5rem 0 3rem;
+      margin-bottom: 3rem;
     }
 
-    @media (min-width: 1500px) {
-      .products-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 2rem;
-      }
-      .main-content {
-        padding: 0 48px;
-      }
-    }
-    @media (max-width: 1100px) {
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.8rem;
-      }
-    }
-    @media (max-width: 750px) {
-      .products-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-      .main-content {
-        padding: 0 20px;
-      }
-      .action-bar {
-        border-radius: 40px;
-        padding: 1rem;
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .search-section {
-        width: 100%;
-      }
-      .search-wrapper {
-        max-width: 100%;
-      }
-      .filter-section {
-        justify-content: flex-start;
-        overflow-x: auto;
-        padding-bottom: 4px;
-      }
-      .dark-toggle {
-        align-self: flex-start;
-      }
-    }
-
-    /* CARD DESIGN */
     .product-card {
       background: white;
-      border-radius: 32px;
+      border-radius: 30px;
       overflow: hidden;
-      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+      position: relative;
+      border: 1px solid #ffd4e6;
       box-shadow: 0 18px 28px -12px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(255, 170, 200, 0.5);
+      transition: 0.3s;
       display: flex;
       flex-direction: column;
-      cursor: default;
-      animation: cardReveal 0.5s ease forwards;
-      position: relative;
-    }
-
-    @keyframes cardReveal {
-      0% { opacity: 0; transform: translateY(15px);}
-      100% { opacity: 1; transform: translateY(0);}
     }
 
     .product-card:hover {
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 30px 40px -14px rgba(231, 84, 128, 0.25);
+      transform: translateY(-8px);
+      box-shadow: 0 25px 40px rgba(231, 84, 128, 0.2);
     }
 
     .slider-container {
@@ -466,9 +228,7 @@
       height: 270px;
       background: linear-gradient(135deg, #fff4fa, #ffeef5);
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      cursor: pointer;
     }
 
     .slider-images {
@@ -479,450 +239,817 @@
 
     .slide-img {
       position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
       object-fit: contain;
       padding: 16px;
       opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-      background: rgba(255, 245, 250, 0.4);
+      transition: opacity 0.35s ease, transform 0.4s ease;
     }
 
     .slide-img.active {
       opacity: 1;
-      z-index: 2;
+    }
+
+    .product-card:hover .slide-img.active {
+      transform: scale(1.05);
     }
 
     .slider-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(4px);
-      border: 1px solid #ffbed6;
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 20;
-      font-size: 1rem;
-      transition: all 0.2s;
+      border: none;
+      background: white;
       color: #e75480;
-      font-weight: bold;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      z-index: 10;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
-    .slider-btn:hover {
-      background: #e75480;
-      color: white;
-      border-color: #e75480;
+    .slider-prev {
+      left: 12px;
     }
 
-    .slider-prev { left: 14px; }
-    .slider-next { right: 14px; }
+    .slider-next {
+      right: 12px;
+    }
 
     .image-counter {
       position: absolute;
       bottom: 12px;
       right: 12px;
-      background: rgba(0,0,0,0.65);
-      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.7);
       color: white;
-      font-size: 0.7rem;
-      padding: 4px 9px;
-      border-radius: 24px;
-      z-index: 15;
-      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
     }
 
     .ribbon-wrapper {
       position: absolute;
       top: 14px;
-      left: -6px;
-      z-index: 30;
-      pointer-events: none;
+      left: 0;
+      z-index: 20;
     }
 
     .ribbon {
       background: linear-gradient(135deg, #e75480, #ff6b9d);
       color: white;
-      padding: 6px 20px 6px 24px;
+      padding: 7px 18px;
+      border-radius: 0 20px 20px 0;
       font-size: 0.72rem;
-      font-weight: 800;
-      border-radius: 0 24px 24px 0;
-      box-shadow: 0 5px 12px rgba(0,0,0,0.2);
-      clip-path: polygon(0% 0%, 92% 0%, 100% 50%, 92% 100%, 0% 100%);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      white-space: nowrap;
     }
 
     .card-content {
-      padding: 1.4rem 1.3rem 1.6rem;
-      flex: 1;
+      padding: 1.4rem;
       display: flex;
       flex-direction: column;
+      flex: 1;
     }
 
     .product-title {
-      font-size: 1.25rem;
-      font-weight: 800;
-      margin-bottom: 0.4rem;
-      color: #3a2631;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px;
+      margin-bottom: 0.7rem;
+      font-size: 1.3rem;
+      font-weight: 800;
     }
 
     .badge-category {
       background: #ffe2ef;
       color: #c95a86;
-      font-size: 0.68rem;
-      font-weight: 800;
-      padding: 0.25rem 1rem;
-      border-radius: 40px;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 700;
     }
 
     .product-desc {
-      font-size: 0.85rem;
       color: #6b4c5e;
-      margin: 0.5rem 0 1rem;
-      line-height: 1.45;
-      flex: 1;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .product-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .product-meta span {
+      background: #fff3f8;
+      color: #c14f78;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .price-tag {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #e75480;
+      margin-bottom: 1rem;
+    }
+
+    .price-tag span {
+      font-size: 0.8rem;
+      color: #9a6b7d;
+      font-weight: 600;
     }
 
     .action-row {
       display: flex;
-      align-items: center;
-      margin-top: 0.4rem;
-      border-top: 1px solid #ffe2ef;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: auto;
       padding-top: 1rem;
+      border-top: 1px solid #ffe2ef;
+    }
+
+    .detail-link,
+    .order-btn {
+      border: none;
+      padding: 0.75rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 0.85rem;
     }
 
     .detail-link {
       background: white;
-      border: 1.8px solid #ffbed6;
-      padding: 0.6rem 1.5rem;
-      border-radius: 60px;
-      font-size: 0.8rem;
-      font-weight: 700;
+      border: 1px solid #ffbed6;
       color: #e75480;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: inherit;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
     }
 
     .detail-link:hover {
       background: #e75480;
-      border-color: #e75480;
       color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(231, 84, 128, 0.3);
     }
 
-    /* Modal */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(58, 38, 49, 0.95);
-      backdrop-filter: blur(12px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      visibility: hidden;
-      opacity: 0;
-      transition: visibility 0.2s, opacity 0.3s ease;
-      padding: 20px;
-    }
-    .modal-overlay.active {
-      visibility: visible;
-      opacity: 1;
-    }
-    .product-modal {
-      background: #fffef7;
-      max-width: 520px;
-      width: 100%;
-      border-radius: 56px;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 40px 50px rgba(0, 0, 0, 0.3);
-      border: 1px solid #ffcade;
-      transform: scale(0.94) translateY(20px);
-      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.2);
-      opacity: 0;
-    }
-    .modal-overlay.active .product-modal {
-      transform: scale(1) translateY(0);
-      opacity: 1;
-    }
-    .modal-icon {
-      font-size: 2.8rem;
-      margin-bottom: 12px;
-      background: #ffeef5;
-      width: 90px;
-      height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      margin: 0 auto 12px;
-    }
-    .modal-product-name {
-      font-size: 1.7rem;
-      font-weight: 800;
-      margin: 0.3rem 0 0.4rem;
-    }
-    .modal-category {
-      display: inline-block;
-      background: #ffe2ef;
-      padding: 0.3rem 1rem;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #c95a86;
-      margin-bottom: 0.8rem;
-    }
-    .modal-desc {
-      font-size: 0.95rem;
-      line-height: 1.5;
-      margin: 0.6rem 0 1rem;
-    }
-    .close-modal-btn {
-      background: #e75480;
-      border: none;
-      padding: 0.7rem 1.8rem;
-      border-radius: 60px;
+    .order-btn {
+      background: #0084ff;
       color: white;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.2s;
+      flex: 1;
+      justify-content: center;
+      box-shadow: 0 6px 14px rgba(0, 132, 255, 0.25);
     }
-    .no-products {
+
+    .order-btn:hover {
+      transform: translateY(-2px);
+      background: #0072e0;
+    }
+
+    .empty-state {
+      grid-column: 1/-1;
       text-align: center;
-      padding: 3.5rem;
-      background: rgba(255, 230, 240, 0.8);
-      border-radius: 70px;
-      grid-column: 1 / -1;
-      color: #c56183;
-      font-weight: 500;
+      padding: 4rem 1rem;
+      color: #c06d8e;
     }
+
+    .empty-state i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .testimonials {
+      margin: 4rem 0;
+    }
+
+    .testimonials h2 {
+      text-align: center;
+      color: #e75480;
+      margin-bottom: 2rem;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .testimonial {
+      background: white;
+      border-radius: 24px;
+      padding: 1.5rem;
+      border: 1px solid #ffd4e6;
+      box-shadow: 0 10px 24px rgba(231, 84, 128, 0.1);
+      color: #6b4c5e;
+    }
+
+    .testimonial strong {
+      display: block;
+      margin-top: 1rem;
+      color: #e75480;
+    }
+
     .footer {
       text-align: center;
-      padding: 2.2rem 0;
-      border-top: 1px solid #ffd4e6;
+      padding: 2rem 0;
       color: #bf7c99;
-      font-size: 0.85rem;
-      margin-top: 0.5rem;
-    }
-    @media (max-width: 900px) {
-      .slider-container { height: 230px; }
     }
 
-    /* logo  */
-    .logo-image img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    border-radius: 50%;
+    .floating-chat {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+
+    .floating-chat a {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0084ff;
+      color: white;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+    }
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .image-modal.active {
+      display: flex;
+    }
+
+    .image-modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 20px;
+      background: white;
+      padding: 10px;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
+      border: none;
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    @media(max-width:1100px) {
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:750px) {
+
+      .main-content {
+        padding: 0 20px;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .search-wrapper {
+        width: 100%;
+      }
+
+      .action-bar {
+        border-radius: 30px;
+      }
+
+      .product-card {
+        border-radius: 24px;
+      }
+
+      .slider-container {
+        height: 240px;
+      }
+
+      .card-content {
+        padding: 1.1rem;
+      }
     }
   </style>
 </head>
-<body>
-<div class="main-content">
-  <div class="hero">
-    <div class="logo-wrapper">
-      <!-- FIXED LOGO: Replaced broken img with beautiful icon + text composition -->
-      <div class="brand-logo">
-        <div class="logo-image">
-        <img src="/images/jpc_logo.png" alt="Joy Prints & Crafts Logo">
-        </div>
-        <div class="logo-text">
-          <span class="logo-main">Joy Prints & Crafts</span>
-          <span class="logo-tag"><i class="fas fa-trophy"></i> since 2022 · artisan quality</span>
-        </div>
-      </div>
-    </div>
-    <div class="hero-sub">
-      <i class="fas fa-trophy"></i> Premium trophy gallery · Click next/back on any card to explore multiple angles
-    </div>
-  </div>
 
-  <!-- DESKTOP OPTIMIZED: ALL IN ONE BAR  -->
-  <div class="action-bar">
-    <div class="filter-section" id="filterBar">
-      <button class="filter-btn active" data-filter="all"><i class="fas fa-crown"></i> All</button>
-      <button class="filter-btn" data-filter="stationery"><i class="fas fa-envelope-open-text"></i> Stationery</button>
-      <button class="filter-btn" data-filter="poster"><i class="fas fa-image"></i> Posters</button>
-      <button class="filter-btn" data-filter="photo"><i class="fas fa-camera-retro"></i> Photo Prints</button>
-      <button class="filter-btn" data-filter="cards"><i class="fas fa-gift"></i> Cards</button>
-      <button class="filter-btn" data-filter="trophy"><i class="fas fa-trophy"></i> Trophies</button>
+<body>
+
+  <div class="main-content">
+
+    <div class="hero">
+
+      <div class="logo-wrapper">
+
+        <div class="brand-logo">
+
+          <div class="logo-image">
+            <img src="images/jpc_logo.png" alt="Joy Prints & Crafts Logo">
+          </div>
+
+          <div class="logo-text">
+            <span class="logo-main">Joy Prints & Crafts</span>
+
+            <span class="logo-tag">
+              <i class="fas fa-trophy"></i>
+              since 2022 · artisan quality
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="hero-sub">
+        <i class="fas fa-trophy"></i>
+        Premium trophy gallery · handcrafted with love
+      </div>
+
     </div>
-    <div class="search-section">
+
+    <section class="featured-banner">
+      <h2>🏆 Most Ordered This Month</h2>
+      <p>Premium custom trophies trusted by schools, events, and organizations.</p>
+    </section>
+
+    <div class="action-bar">
+
+      <div class="filter-section">
+        <button class="filter-btn active" data-filter="all">✨ All</button>
+        <button class="filter-btn" data-filter="trophy">🏆 Trophies</button>
+        <button class="filter-btn" data-filter="stationery">📚 Stationery</button>
+        <button class="filter-btn" data-filter="poster">🖼 Posters</button>
+      </div>
+
       <div class="search-wrapper">
         <i class="fas fa-search"></i>
-        <input type="text" id="searchInput" placeholder="Search treasures... trophy, award, poster">
+
+        <input type="text" id="searchInput" placeholder="Search products...">
       </div>
+
     </div>
-    <button class="dark-toggle" id="darkModeToggle"><i class="fas fa-moon"></i> Dark</button>
+
+    <div class="stats-bar">
+
+      <div class="product-counter">
+        <i class="fas fa-gem"></i>
+        <span id="productCount">0</span> products
+      </div>
+
+    </div>
+
+    <div id="productsGrid" class="products-grid"></div>
+
+    <section class="testimonials">
+
+      <h2>💬 Customer Reviews</h2>
+
+      <div class="testimonial-grid">
+
+        <div class="testimonial">
+          ⭐⭐⭐⭐⭐
+          <p>"Very high quality trophies and fast transaction!"</p>
+          <strong>- Maria G.</strong>
+        </div>
+
+        <div class="testimonial">
+          ⭐⭐⭐⭐⭐
+          <p>"Affordable and elegant designs. Highly recommended."</p>
+          <strong>- James R.</strong>
+        </div>
+
+        <div class="testimonial">
+          ⭐⭐⭐⭐⭐
+          <p>"Excellent craftsmanship and very accommodating seller."</p>
+          <strong>- Claire P.</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+    <footer class="footer">
+      ✨ Premium handcrafted products by Joy Prints & Crafts ✨
+    </footer>
+
   </div>
 
-  <div class="stats-bar">
-    <div class="product-counter"><i class="fas fa-gem"></i> <span id="productCount">0</span> handcrafted treasures</div>
+  <div class="floating-chat">
+    <a href="https://m.me/YOUR_PAGE_USERNAME" target="_blank">
+      <i class="fab fa-facebook-messenger"></i>
+    </a>
   </div>
-  <div id="productsGrid" class="products-grid"></div>
-  <footer class="footer"><p>✨ Immersive gallery — each trophy card features multi-angle image slider ✨</p></footer>
-</div>
 
-<div id="productModal" class="modal-overlay"><div class="product-modal"><div class="modal-icon" id="modalIcon"></div><h2 class="modal-product-name" id="modalName"></h2><span class="modal-category" id="modalCategory"></span><p class="modal-desc" id="modalDesc"></p><div class="modal-feature" id="modalFeature" style="background:#fff0f7;padding:0.7rem;border-radius:40px;margin:1rem 0;"><i class="fas fa-star"></i> Premium collectible</div><button class="close-modal-btn" id="closeModalBtn"><i class="fas fa-heart"></i> Close</button></div></div>
+  <div class="image-modal" id="imageModal">
+    <button class="close-modal" id="closeModal">
+      <i class="fas fa-times"></i>
+    </button>
 
-<script>
-  // enriched product data
-  const products = [
-    { id: 1, name: "Golden Eagle Trophy", category: "trophy", description: "Premium Sintra trophy with elegant gold finish. Perfect for awards, competitions, and special recognitions. Engraving ready and weighty feel.", icon: "🏆", material: "Premium Sintra · 24K Gold finish", ribbon: "best", images: ["/images/trophy/b_trophy1.jpeg", "/images/trophy/golden_eagle_angle2.jpeg", "/images/trophy/golden_eagle_detail.jpeg", "/images/trophy/golden_eagle_base.jpeg"] },
-    { id: 1, name: "Golden Eagle Trophy", category: "trophy", description: "Premium Sintra trophy with elegant gold finish. Perfect for awards, competitions, and special recognitions. Engraving ready and weighty feel.", icon: "🏆", material: "Premium Sintra · 24K Gold finish", ribbon: "best", images: ["/images/trophy/b_trophy1.jpeg", "/images/trophy/golden_eagle_angle2.jpeg", "/images/trophy/golden_eagle_detail.jpeg", "/images/trophy/golden_eagle_base.jpeg"] },
-    { id: 1, name: "Golden Eagle Trophy", category: "trophy", description: "Premium Sintra trophy with elegant gold finish. Perfect for awards, competitions, and special recognitions. Engraving ready and weighty feel.", icon: "🏆", material: "Premium Sintra · 24K Gold finish", ribbon: "best", images: ["/images/trophy/b_trophy1.jpeg", "/images/trophy/golden_eagle_angle2.jpeg", "/images/trophy/golden_eagle_detail.jpeg", "/images/trophy/golden_eagle_base.jpeg"] },
-    { id: 1, name: "Golden Eagle Trophy", category: "trophy", description: "Premium Sintra trophy with elegant gold finish. Perfect for awards, competitions, and special recognitions. Engraving ready and weighty feel.", icon: "🏆", material: "Premium Sintra · 24K Gold finish", ribbon: "best", images: ["/images/trophy/b_trophy1.jpeg", "/images/trophy/golden_eagle_angle2.jpeg", "/images/trophy/golden_eagle_detail.jpeg", "/images/trophy/golden_eagle_base.jpeg"] },
-    { id: 1, name: "Golden Eagle Trophy", category: "trophy", description: "Premium Sintra trophy with elegant gold finish. Perfect for awards, competitions, and special recognitions. Engraving ready and weighty feel.", icon: "🏆", material: "Premium Sintra · 24K Gold finish", ribbon: "best", images: ["/images/trophy/b_trophy1.jpeg", "/images/trophy/golden_eagle_angle2.jpeg", "/images/trophy/golden_eagle_detail.jpeg", "/images/trophy/golden_eagle_base.jpeg"] },
-    { id: 1, name: "Golden Eagle Trophy", category: "trophy", description: "Premium Sintra trophy with elegant gold finish. Perfect for awards, competitions, and special recognitions. Engraving ready and weighty feel.", icon: "🏆", material: "Premium Sintra · 24K Gold finish", ribbon: "best", images: ["/images/trophy/b_trophy1.jpeg", "/images/trophy/golden_eagle_angle2.jpeg", "/images/trophy/golden_eagle_detail.jpeg", "/images/trophy/golden_eagle_base.jpeg"] },
-    { id: 1, name: "Golden Eagle Trophy", category: "trophy", description: "Premium Sintra trophy with elegant gold finish. Perfect for awards, competitions, and special recognitions. Engraving ready and weighty feel.", icon: "🏆", material: "Premium Sintra · 24K Gold finish", ribbon: "best", images: ["/images/trophy/b_trophy1.jpeg", "/images/trophy/golden_eagle_angle2.jpeg", "/images/trophy/golden_eagle_detail.jpeg", "/images/trophy/golden_eagle_base.jpeg"] },
-  ];
+    <img id="modalImage" src="" alt="">
+  </div>
 
-  for (let p of products) {
-    if (!p.images || p.images.length === 0) {
-      p.images = [`https://placehold.co/600x500/FCE4EC/E75480?text=${encodeURIComponent(p.icon + ' ' + p.name.substring(0, 18))}`];
+  <script>
+
+    const messengerLink = "https://m.me/YOUR_PAGE_USERNAME";
+
+    const products = [
+
+      {
+        id: 1,
+        name: "Golden Eagle Trophy",
+        category: "trophy",
+        description: "Premium Sintra trophy with elegant gold finish.",
+        material: "Premium Sintra",
+        size: "12 inches",
+        finish: "Gold Finish",
+        price: "₱499",
+        ribbon: "best",
+        images: [
+          "images/trophy/b_trophy1.jpeg",
+          "images/trophy/b_trophy2.jpg",
+          "images/trophy/b_trophy6.jpeg"
+        ]
+      },
+
+      {
+        id: 2,
+        name: "Champion Trophy",
+        category: "trophy",
+        description: "Elegant custom championship award for events and competitions.",
+        material: "Premium Acrylic",
+        size: "15 inches",
+        finish: "Gloss Finish",
+        price: "₱699",
+        ribbon: "new",
+        images: [
+          "images/trophy/b_trophy1.jpeg",
+          "images/trophy/b_trophy2.jpg"
+        ]
+      },
+
+      {
+        id: 3,
+        name: "Classic Medal Trophy",
+        category: "trophy",
+        description: "Modern trophy design for sports and academic recognition.",
+        material: "Wood + Acrylic",
+        size: "10 inches",
+        finish: "Matte Finish",
+        price: "₱599",
+        ribbon: "best",
+        images: [
+          "images/trophy/b_trophy1.jpeg",
+          "images/trophy/b_trophy2.jpg",
+          "images/trophy/b_trophy6.jpeg"
+        ]
+      },
+
+      {
+        id: 7,
+        name: "Anime Wall Poster",
+        category: "poster",
+        description: "High quality glossy anime poster print.",
+        material: "Glossy Photo Paper",
+        size: "18 x 24 inches",
+        finish: "Glossy Finish",
+        price: "₱199",
+        ribbon: "new",
+        images: [
+          "images/poster/poster1.jpg",
+          "images/poster/poster2.jpg"
+        ]
+      },
+
+      {
+        id: 8,
+        name: "Minimalist Art Poster",
+        category: "poster",
+        description: "Modern decorative poster for bedrooms and offices.",
+        material: "Premium Matte Paper",
+        size: "24 x 36 inches",
+        finish: "Matte Finish",
+        price: "₱249",
+        ribbon: "best",
+        images: [
+          "images/poster/poster3.jpg",
+          "images/poster/poster4.jpg"
+        ]
+      },
+
+      {
+        id: 9,
+        name: "Cute Notebook Set",
+        category: "stationery",
+        description: "Aesthetic notebook perfect for school and journaling.",
+        material: "Hardbound Paper",
+        size: "A5",
+        finish: "Soft Touch Cover",
+        price: "₱149",
+        ribbon: "new",
+        images: [
+          "images/stationery/note1.jpg",
+          "images/stationery/note2.jpg"
+        ]
+      }
+
+    ];
+
+    const productsGrid = document.getElementById("productsGrid");
+
+    let currentFilter = "all";
+    let currentSearch = "";
+
+    function getCategoryLabel(cat) {
+
+      const map = {
+        trophy: "Trophy",
+        poster: "Poster",
+        stationery: "Stationery"
+      };
+
+      return map[cat] || cat;
     }
-  }
 
-  const productsGrid = document.getElementById('productsGrid');
-  let currentFilter = 'all';
-  let currentSearch = '';
+    function renderProducts() {
 
-  function getCategoryLabel(cat) {
-    const map = { stationery: 'Stationery', poster: 'Art Poster', photo: 'Photo Print', cards: 'Greeting Card', trophy: 'Trophy' };
-    return map[cat] || 'Collectible';
-  }
+      let filtered = products;
 
-  function escapeHtml(str) { return str.replace(/[&<>]/g, function(m) { if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+      if (currentFilter !== "all") {
+        filtered = filtered.filter(p => p.category === currentFilter);
+      }
 
-  function initSliderForCard(cardElement, imagesArray) {
-    const sliderContainer = cardElement.querySelector('.slider-container');
-    if (!sliderContainer || !imagesArray.length) return;
-    const slidesContainer = sliderContainer.querySelector('.slider-images');
-    const slides = slidesContainer.querySelectorAll('.slide-img');
-    let currentIndex = 0;
-    const total = slides.length;
-    const counterSpan = sliderContainer.querySelector('.image-counter span');
-    const updateCounter = () => { if (counterSpan) counterSpan.innerText = `${currentIndex+1}/${total}`; };
-    const showSlide = (idx) => { slides.forEach((s,i) => { if(i===idx) s.classList.add('active'); else s.classList.remove('active'); }); currentIndex = idx; updateCounter(); };
-    const prevBtn = sliderContainer.querySelector('.slider-prev');
-    const nextBtn = sliderContainer.querySelector('.slider-next');
-    if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); let newIdx = currentIndex - 1; if (newIdx < 0) newIdx = total - 1; showSlide(newIdx); });
-    if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); let newIdx = currentIndex + 1; if (newIdx >= total) newIdx = 0; showSlide(newIdx); });
-    showSlide(0);
-  }
+      if (currentSearch.trim() !== "") {
 
-  function filterProducts() {
-    let filtered = products;
-    if (currentFilter !== 'all') filtered = filtered.filter(p => p.category === currentFilter);
-    if (currentSearch.trim() !== '') {
-      const s = currentSearch.toLowerCase();
-      filtered = filtered.filter(p => p.name.toLowerCase().includes(s) || p.description.toLowerCase().includes(s));
-    }
-    return filtered;
-  }
+        const s = currentSearch.toLowerCase();
 
-  function renderProducts() {
-    const filtered = filterProducts();
-    document.getElementById('productCount').innerText = filtered.length;
-    if (filtered.length === 0) {
-      productsGrid.innerHTML = `<div class="no-products"><i class="fas fa-feather-alt" style="font-size:2.5rem;margin-bottom:1rem;display:block;"></i> ✨ No treasures match ✨</div>`;
-      return;
-    }
-    productsGrid.innerHTML = filtered.map(product => {
-      const ribbonHtml = product.ribbon === 'new' ? `<div class="ribbon-wrapper"><div class="ribbon"><i class="fas fa-sparkle"></i> NEW DROP</div></div>` : (product.ribbon === 'best' ? `<div class="ribbon-wrapper"><div class="ribbon"><i class="fas fa-crown"></i> BEST SELLER</div></div>` : '');
-      let slidesHtml = '';
-      product.images.forEach((imgSrc, idx) => {
-        slidesHtml += `<img src="${imgSrc}" alt="${escapeHtml(product.name)} view ${idx+1}" class="slide-img ${idx===0?'active':''}" loading="lazy">`;
-      });
-      const hasMultiple = product.images.length > 1;
-      return `
-        <div class="product-card" data-id="${product.id}">
-          ${ribbonHtml}
+        filtered = filtered.filter(p =>
+          p.name.toLowerCase().includes(s) ||
+          p.description.toLowerCase().includes(s)
+        );
+      }
+
+      document.getElementById("productCount").innerText = filtered.length;
+
+      if (filtered.length === 0) {
+
+        productsGrid.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-search"></i>
+          <h3>No products found</h3>
+        </div>
+      `;
+
+        return;
+      }
+
+      productsGrid.innerHTML = filtered.map(product => {
+
+        let slidesHtml = "";
+
+        product.images.forEach((img, index) => {
+
+          slidesHtml += `
+          <img
+            loading="lazy"
+            src="${img}"
+            class="slide-img ${index === 0 ? 'active' : ''}"
+            alt="${product.name}"
+          >
+        `;
+        });
+
+        return `
+
+        <div class="product-card">
+
+          ${product.ribbon ? `
+            <div class="ribbon-wrapper">
+              <div class="ribbon">
+                ${product.ribbon === 'best' ? 'BEST SELLER' : 'NEW'}
+              </div>
+            </div>
+          ` : ''}
+
           <div class="slider-container">
-            <div class="slider-images">${slidesHtml}</div>
-            ${hasMultiple ? `<div class="slider-btn slider-prev"><i class="fas fa-chevron-left"></i></div><div class="slider-btn slider-next"><i class="fas fa-chevron-right"></i></div>` : ''}
-            ${hasMultiple ? `<div class="image-counter"><i class="fas fa-images"></i> <span>1/${product.images.length}</span></div>` : ''}
+
+            <div class="slider-images">
+              ${slidesHtml}
+            </div>
+
+            ${product.images.length > 1
+            ?
+            `
+                <button class="slider-btn slider-prev">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <button class="slider-btn slider-next">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div class="image-counter">
+                  <span>1/${product.images.length}</span>
+                </div>
+              `
+            :
+            ''
+          }
+
           </div>
+
           <div class="card-content">
-            <div class="product-title"><span>${escapeHtml(product.name)}</span><span class="badge-category">${getCategoryLabel(product.category)}</span></div>
-            <div class="product-desc">${escapeHtml(product.description.substring(0, 100))}${product.description.length>100?'…':''}</div>
-            <div class="action-row"><button class="detail-link" data-id="${product.id}"><i class="fas fa-eye"></i> View details</button></div>
+
+            <div class="product-title">
+
+              <span>${product.name}</span>
+
+              <span class="badge-category">
+                ${getCategoryLabel(product.category)}
+              </span>
+
+            </div>
+
+            <div class="product-desc">
+              ${product.description}
+            </div>
+
+            <div class="product-meta">
+              <span>📏 ${product.size}</span>
+              <span>✨ ${product.finish}</span>
+              <span>🏆 ${product.material}</span>
+            </div>
+
+            <div class="price-tag">
+              Starts at ${product.price}
+              <span> · customizable</span>
+            </div>
+
+            <div class="action-row">
+
+              <button class="detail-link view-btn">
+                <i class="fas fa-eye"></i>
+                View
+              </button>
+
+              <a
+                class="order-btn"
+                href="${messengerLink}?text=Hi! I'm interested in ordering the ${encodeURIComponent(product.name)}"
+                target="_blank"
+              >
+                <i class="fab fa-facebook-messenger"></i>
+                Order Now
+              </a>
+
+            </div>
+
           </div>
-        </div>`;
-    }).join('');
-    document.querySelectorAll('.product-card').forEach(card => {
-      const pid = parseInt(card.getAttribute('data-id'));
-      const prod = products.find(p => p.id === pid);
-      if (prod && prod.images) initSliderForCard(card, prod.images);
-      card.addEventListener('click', (e) => { if(e.target.closest('.slider-btn')||e.target.closest('.detail-link')) return; openProductModal(prod); });
-      const detail = card.querySelector('.detail-link');
-      if(detail) detail.addEventListener('click', (e) => { e.stopPropagation(); openProductModal(prod); });
-    });
-  }
 
-  function openProductModal(p) {
-    document.getElementById('modalIcon').innerHTML = `<span style="font-size: 3rem;">${p.icon}</span>`;
-    document.getElementById('modalName').innerText = p.name;
-    document.getElementById('modalCategory').innerText = getCategoryLabel(p.category);
-    document.getElementById('modalDesc').innerText = p.description;
-    document.getElementById('modalFeature').innerHTML = `<i class="fas fa-crown"></i> ${p.material || 'Premium artisan quality'} · Multi-angle gallery`;
-    modalOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-  const modalOverlay = document.getElementById('productModal');
-  function closeModal() { modalOverlay.classList.remove('active'); document.body.style.overflow = ''; }
-  document.getElementById('closeModalBtn').addEventListener('click', closeModal);
-  modalOverlay.addEventListener('click', (e) => { if(e.target === modalOverlay) closeModal(); });
-  document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal(); });
+        </div>
+      `;
 
-  function initEvents() {
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const val = btn.getAttribute('data-filter');
-        if(!val || currentFilter===val) return;
-        document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        currentFilter = val;
+      }).join("");
+
+      initSliders();
+      initModal();
+    }
+
+    function initSliders() {
+
+      document.querySelectorAll(".product-card").forEach(card => {
+
+        const slides = card.querySelectorAll(".slide-img");
+
+        if (slides.length <= 1) return;
+
+        let current = 0;
+
+        const prevBtn = card.querySelector(".slider-prev");
+        const nextBtn = card.querySelector(".slider-next");
+        const counter = card.querySelector(".image-counter span");
+
+        function showSlide(index) {
+
+          slides.forEach(slide => slide.classList.remove("active"));
+
+          slides[index].classList.add("active");
+
+          counter.textContent = `${index + 1}/${slides.length}`;
+        }
+
+        prevBtn.addEventListener("click", () => {
+
+          current--;
+
+          if (current < 0) {
+            current = slides.length - 1;
+          }
+
+          showSlide(current);
+        });
+
+        nextBtn.addEventListener("click", () => {
+
+          current++;
+
+          if (current >= slides.length) {
+            current = 0;
+          }
+
+          showSlide(current);
+        });
+      });
+    }
+
+    function initModal() {
+
+      const modal = document.getElementById("imageModal");
+      const modalImage = document.getElementById("modalImage");
+
+      document.querySelectorAll(".view-btn").forEach(btn => {
+
+        btn.addEventListener("click", () => {
+
+          const card = btn.closest(".product-card");
+          const activeImage = card.querySelector(".slide-img.active");
+
+          modalImage.src = activeImage.src;
+
+          modal.classList.add("active");
+        });
+
+      });
+
+    }
+
+    document.getElementById("closeModal")
+      .addEventListener("click", () => {
+
+        document.getElementById("imageModal")
+          .classList.remove("active");
+      });
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+
+      btn.addEventListener("click", () => {
+
+        document.querySelectorAll(".filter-btn")
+          .forEach(b => b.classList.remove("active"));
+
+        btn.classList.add("active");
+
+        currentFilter = btn.dataset.filter;
+
         renderProducts();
       });
+
     });
-    document.getElementById('searchInput').addEventListener('input', (e) => { currentSearch = e.target.value; renderProducts(); });
-    document.getElementById('darkModeToggle').addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      const btn = document.getElementById('darkModeToggle');
-      btn.innerHTML = document.body.classList.contains('dark') ? '<i class="fas fa-sun"></i> Light' : '<i class="fas fa-moon"></i> Dark';
-    });
-  }
-  renderProducts();
-  initEvents();
-</script>
+
+    document.getElementById("searchInput")
+      .addEventListener("input", (e) => {
+
+        currentSearch = e.target.value;
+
+        renderProducts();
+      });
+
+    renderProducts();
+
+  </script>
+
 </body>
+
 </html>
