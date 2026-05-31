@@ -429,6 +429,72 @@
       margin-bottom: 1rem;
     }
 
+    /* ─── Why Us Section ─── */
+    .why-us {
+      background: white;
+      border: 1px solid #ffd4e6;
+      border-radius: 30px;
+      padding: 2.5rem 2rem;
+      margin: 2rem 0;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(231, 84, 128, 0.1);
+    }
+
+    .why-us h2 {
+      color: #e75480;
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .features div {
+      background: #fff0f6;
+      border: 1px solid #ffd4e6;
+      border-radius: 20px;
+      padding: 1rem 1.2rem;
+      font-weight: 700;
+      color: #c44a73;
+      font-size: 0.95rem;
+      transition: 0.2s;
+    }
+
+    .features div:hover {
+      background: #e75480;
+      color: white;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(231, 84, 128, 0.25);
+    }
+
+    /* ─── Contact Section ─── */
+    .contact-info {
+      background: white;
+      border: 1px solid #ffd4e6;
+      border-radius: 30px;
+      padding: 2.5rem 2rem;
+      margin: 2rem 0;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(231, 84, 128, 0.1);
+    }
+
+    .contact-info h2 {
+      color: #e75480;
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .contact-info p {
+      color: #6b4c5e;
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+    }
+
+    /* ─── Testimonials ─── */
     .testimonials {
       margin: 4rem 0;
     }
@@ -487,10 +553,12 @@
       text-decoration: none;
     }
 
-    .image-modal {
+    /* ─── Product Detail Modal ─── */
+    .product-modal {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(30, 10, 20, 0.75);
+      backdrop-filter: blur(6px);
       display: none;
       align-items: center;
       justify-content: center;
@@ -498,33 +566,274 @@
       padding: 20px;
     }
 
-    .image-modal.active {
+    .product-modal.active {
       display: flex;
     }
 
-    .image-modal img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 20px;
+    .modal-inner {
       background: white;
-      padding: 10px;
+      border-radius: 32px;
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 30px 80px rgba(231, 84, 128, 0.3);
+      display: flex;
+      flex-direction: column;
+      animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .close-modal {
+    @keyframes modalPop {
+      from { opacity: 0; transform: scale(0.88) translateY(30px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal-close {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 45px;
-      height: 45px;
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
       border: none;
       border-radius: 50%;
-      background: white;
+      background: #ffe2ef;
+      color: #e75480;
+      font-size: 1rem;
       cursor: pointer;
-      font-size: 1.2rem;
+      z-index: 10;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      background: #e75480;
+      color: white;
+    }
+
+    .modal-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* Left: image gallery */
+    .modal-gallery {
+      position: relative;
+      background: linear-gradient(135deg, #fff4fa, #ffeef5);
+      border-radius: 32px 0 0 32px;
+      overflow: hidden;
+      min-height: 380px;
+    }
+
+    .modal-main-img {
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      object-fit: contain;
+      padding: 24px;
+      transition: opacity 0.3s;
+    }
+
+    .modal-thumbnails {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+
+    .modal-thumb {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid transparent;
+      cursor: pointer;
+      background: white;
+      padding: 3px;
+      transition: 0.2s;
+    }
+
+    .modal-thumb.active,
+    .modal-thumb:hover {
+      border-color: #e75480;
+      box-shadow: 0 4px 10px rgba(231, 84, 128, 0.3);
+    }
+
+    /* Right: product info */
+    .modal-info {
+      padding: 2rem 2rem 2rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .modal-ribbon {
+      display: inline-block;
+      background: linear-gradient(135deg, #e75480, #ff6b9d);
+      color: white;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      width: fit-content;
+    }
+
+    .modal-product-name {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #3e2a33;
+      line-height: 1.2;
+    }
+
+    .modal-category-badge {
+      background: #ffe2ef;
+      color: #c95a86;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      width: fit-content;
+    }
+
+    .modal-desc {
+      color: #6b4c5e;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .modal-divider {
+      border: none;
+      border-top: 1px solid #ffe2ef;
+    }
+
+    .modal-section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #b35c7c;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .option-chip {
+      padding: 0.45rem 1rem;
+      border-radius: 50px;
+      border: 1.5px solid #ffd4e6;
+      background: white;
+      color: #c44a73;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: inherit;
+    }
+
+    .option-chip:hover,
+    .option-chip.selected {
+      background: #e75480;
+      border-color: #e75480;
+      color: white;
+      box-shadow: 0 4px 10px rgba(231, 84, 128, 0.3);
+    }
+
+    .color-chip {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      cursor: pointer;
+      transition: 0.2s;
+      outline: none;
+    }
+
+    .color-chip:hover,
+    .color-chip.selected {
+      border-color: #e75480;
+      box-shadow: 0 0 0 3px rgba(231, 84, 128, 0.25);
+      transform: scale(1.15);
+    }
+
+    .modal-price {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #e75480;
+    }
+
+    .modal-price span {
+      font-size: 0.82rem;
+      color: #9a6b7d;
+      font-weight: 500;
+    }
+
+    .modal-meta-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .modal-meta-chips span {
+      background: #fff3f8;
+      color: #c14f78;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .modal-order-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #0084ff;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      margin-top: auto;
+      box-shadow: 0 8px 20px rgba(0, 132, 255, 0.3);
+      transition: 0.2s;
+    }
+
+    .modal-order-btn:hover {
+      background: #0072e0;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 132, 255, 0.35);
+    }
+
+    /* ─── Responsive ─── */
+    @media(max-width: 680px) {
+      .modal-body {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-gallery {
+        border-radius: 32px 32px 0 0;
+        min-height: 260px;
+      }
+
+      .modal-main-img {
+        min-height: 260px;
+      }
+
+      .modal-info {
+        padding: 1.4rem;
+      }
     }
 
     @media(max-width:1100px) {
-
       .products-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -532,10 +841,13 @@
       .testimonial-grid {
         grid-template-columns: 1fr;
       }
+
+      .features {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media(max-width:750px) {
-
       .main-content {
         padding: 0 20px;
       }
@@ -563,6 +875,10 @@
       .card-content {
         padding: 1.1rem;
       }
+
+      .features {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
 </head>
@@ -572,33 +888,24 @@
   <div class="main-content">
 
     <div class="hero">
-
       <div class="logo-wrapper">
-
         <div class="brand-logo">
-
           <div class="logo-image">
             <img src="images/jpc_logo.png" alt="Joy Prints & Crafts Logo">
           </div>
-
           <div class="logo-text">
             <span class="logo-main">Joy Prints & Crafts</span>
-
             <span class="logo-tag">
               <i class="fas fa-trophy"></i>
               since 2022 · artisan quality
             </span>
           </div>
-
         </div>
-
       </div>
-
       <div class="hero-sub">
         <i class="fas fa-trophy"></i>
         Premium trophy gallery · handcrafted with love
       </div>
-
     </div>
 
     <section class="featured-banner">
@@ -607,63 +914,70 @@
     </section>
 
     <div class="action-bar">
-
       <div class="filter-section">
         <button class="filter-btn active" data-filter="all">✨ All</button>
         <button class="filter-btn" data-filter="trophy">🏆 Trophies</button>
         <button class="filter-btn" data-filter="stationery">📚 Stationery</button>
         <button class="filter-btn" data-filter="poster">🖼 Posters</button>
       </div>
-
       <div class="search-wrapper">
         <i class="fas fa-search"></i>
-
         <input type="text" id="searchInput" placeholder="Search products...">
       </div>
-
     </div>
 
     <div class="stats-bar">
-
       <div class="product-counter">
         <i class="fas fa-gem"></i>
         <span id="productCount">0</span> products
       </div>
-
     </div>
 
     <div id="productsGrid" class="products-grid"></div>
 
+    <!-- Why Us -->
+    <section class="why-us">
+      <h2>💎 Why Choose Joy Prints & Crafts?</h2>
+      <div class="features">
+        <div>✅ Custom Designs</div>
+        <div>✅ Fast Turnaround</div>
+        <div>✅ Affordable Prices</div>
+        <div>✅ Quality Materials</div>
+      </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="contact-info">
+      <h2>📬 Contact Us</h2>
+      <p>📱 09XX-XXX-XXXX</p>
+      <p>📧 joyprints@email.com</p>
+      <p>📍 Cotabato City, Philippines</p>
+    </section>
+
     <section class="testimonials">
-
       <h2>💬 Customer Reviews</h2>
-
       <div class="testimonial-grid">
-
         <div class="testimonial">
           ⭐⭐⭐⭐⭐
           <p>"Very high quality trophies and fast transaction!"</p>
           <strong>- Maria G.</strong>
         </div>
-
         <div class="testimonial">
           ⭐⭐⭐⭐⭐
           <p>"Affordable and elegant designs. Highly recommended."</p>
           <strong>- James R.</strong>
         </div>
-
         <div class="testimonial">
           ⭐⭐⭐⭐⭐
           <p>"Excellent craftsmanship and very accommodating seller."</p>
           <strong>- Claire P.</strong>
         </div>
-
       </div>
-
     </section>
 
     <footer class="footer">
-      ✨ Premium handcrafted products by Joy Prints & Crafts ✨
+      ✨ Premium handcrafted products by Joy Prints & Crafts ✨ <br>
+      @ Brondex v. 1.0 · All rights reserved
     </footer>
 
   </div>
@@ -674,12 +988,53 @@
     </a>
   </div>
 
-  <div class="image-modal" id="imageModal">
-    <button class="close-modal" id="closeModal">
-      <i class="fas fa-times"></i>
-    </button>
+  <!-- ─── Product Detail Modal ─── -->
+  <div class="product-modal" id="productModal">
+    <div class="modal-inner">
 
-    <img id="modalImage" src="" alt="">
+      <button class="modal-close" id="modalClose">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="modal-body">
+
+        <!-- Left: image -->
+        <div class="modal-gallery">
+          <img class="modal-main-img" id="modalMainImg" src="" alt="">
+          <div class="modal-thumbnails" id="modalThumbs"></div>
+        </div>
+
+        <!-- Right: info -->
+        <div class="modal-info">
+          <div id="modalRibbon"></div>
+          <div class="modal-product-name" id="modalName"></div>
+          <div class="modal-category-badge" id="modalCategory"></div>
+          <p class="modal-desc" id="modalDesc"></p>
+
+          <hr class="modal-divider">
+
+          <div class="modal-meta-chips" id="modalMeta"></div>
+
+          <div>
+            <div class="modal-section-label">Available Sizes</div>
+            <div class="modal-options" id="modalSizes"></div>
+          </div>
+
+          <div>
+            <div class="modal-section-label">Available Colors</div>
+            <div class="modal-options" id="modalColors"></div>
+          </div>
+
+          <div class="modal-price" id="modalPrice"></div>
+
+          <a class="modal-order-btn" id="modalOrderBtn" href="#" target="_blank">
+            <i class="fab fa-facebook-messenger"></i>
+            Order Now via Messenger
+          </a>
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <script>
@@ -687,125 +1042,130 @@
     const messengerLink = "https://m.me/YOUR_PAGE_USERNAME";
 
     const products = [
-
       {
         id: 1,
         name: "Golden Eagle Trophy",
         category: "trophy",
-        description: "Premium Sintra trophy with elegant gold finish.",
+        description: "Premium Sintra trophy with elegant gold finish. Perfect for sports championships, academic awards, and corporate recognition events. Fully customizable with your name, logo, and message.",
         material: "Premium Sintra",
         size: "12 inches",
         finish: "Gold Finish",
         price: "₱499",
         ribbon: "best",
+        sizes: ["8 inches", "10 inches", "12 inches", "15 inches"],
+        colors: ["#FFD700", "#C0C0C0", "#CD7F32", "#FFFFFF"],
+        colorNames: ["Gold", "Silver", "Bronze", "White"],
         images: [
           "images/trophy/b_trophy1.jpeg",
           "images/trophy/b_trophy2.jpg",
           "images/trophy/b_trophy6.jpeg"
         ]
       },
-
       {
         id: 2,
         name: "Champion Trophy",
         category: "trophy",
-        description: "Elegant custom championship award for events and competitions.",
+        description: "Elegant custom championship award for events and competitions. Made with premium acrylic for a sleek, modern look. Ideal for tournaments, recognition nights, and company awards.",
         material: "Premium Acrylic",
         size: "15 inches",
         finish: "Gloss Finish",
         price: "₱699",
         ribbon: "new",
+        sizes: ["10 inches", "12 inches", "15 inches", "18 inches"],
+        colors: ["#FFD700", "#C0C0C0", "#1a73e8", "#e75480"],
+        colorNames: ["Gold", "Silver", "Blue", "Pink"],
         images: [
           "images/trophy/b_trophy1.jpeg",
           "images/trophy/b_trophy2.jpg"
         ]
       },
-
       {
         id: 3,
         name: "Classic Medal Trophy",
         category: "trophy",
-        description: "Modern trophy design for sports and academic recognition.",
+        description: "Modern trophy design combining wood and acrylic for sports and academic recognition. The matte finish gives it a refined, timeless appearance suitable for any ceremony.",
         material: "Wood + Acrylic",
         size: "10 inches",
         finish: "Matte Finish",
         price: "₱599",
         ribbon: "best",
+        sizes: ["8 inches", "10 inches", "12 inches"],
+        colors: ["#8B4513", "#3e2a33", "#FFD700"],
+        colorNames: ["Brown Wood", "Dark Wood", "Gold Accent"],
         images: [
           "images/trophy/b_trophy1.jpeg",
           "images/trophy/b_trophy2.jpg",
           "images/trophy/b_trophy6.jpeg"
         ]
       },
-
       {
-        id: 7,
-        name: "Anime Wall Poster",
-        category: "poster",
-        description: "High quality glossy anime poster print.",
-        material: "Glossy Photo Paper",
-        size: "18 x 24 inches",
-        finish: "Glossy Finish",
-        price: "₱199",
-        ribbon: "new",
-        images: [
-          "images/poster/poster1.jpg",
-          "images/poster/poster2.jpg"
-        ]
-      },
-
-      {
-        id: 8,
-        name: "Minimalist Art Poster",
-        category: "poster",
-        description: "Modern decorative poster for bedrooms and offices.",
-        material: "Premium Matte Paper",
-        size: "24 x 36 inches",
-        finish: "Matte Finish",
-        price: "₱249",
+        id: 1,
+        name: "Golden Eagle Trophy",
+        category: "trophy",
+        description: "Premium Sintra trophy with elegant gold finish. Perfect for sports championships, academic awards, and corporate recognition events. Fully customizable with your name, logo, and message.",
+        material: "Premium Sintra",
+        size: "12 inches",
+        finish: "Gold Finish",
+        price: "₱499",
         ribbon: "best",
+        sizes: ["8 inches", "10 inches", "12 inches", "15 inches"],
+        colors: ["#FFD700", "#C0C0C0", "#CD7F32", "#FFFFFF"],
+        colorNames: ["Gold", "Silver", "Bronze", "White"],
         images: [
-          "images/poster/poster3.jpg",
-          "images/poster/poster4.jpg"
+          "images/trophy/b_trophy1.jpeg",
+          "images/trophy/b_trophy2.jpg",
+          "images/trophy/b_trophy6.jpeg"
         ]
       },
-
       {
-        id: 9,
-        name: "Cute Notebook Set",
-        category: "stationery",
-        description: "Aesthetic notebook perfect for school and journaling.",
-        material: "Hardbound Paper",
-        size: "A5",
-        finish: "Soft Touch Cover",
-        price: "₱149",
+        id: 2,
+        name: "Champion Trophy",
+        category: "trophy",
+        description: "Elegant custom championship award for events and competitions. Made with premium acrylic for a sleek, modern look. Ideal for tournaments, recognition nights, and company awards.",
+        material: "Premium Acrylic",
+        size: "15 inches",
+        finish: "Gloss Finish",
+        price: "₱699",
         ribbon: "new",
+        sizes: ["10 inches", "12 inches", "15 inches", "18 inches"],
+        colors: ["#FFD700", "#C0C0C0", "#1a73e8", "#e75480"],
+        colorNames: ["Gold", "Silver", "Blue", "Pink"],
         images: [
-          "images/stationery/note1.jpg",
-          "images/stationery/note2.jpg"
+          "images/trophy/b_trophy1.jpeg",
+          "images/trophy/b_trophy2.jpg"
         ]
-      }
-
+      },
+      {
+        id: 3,
+        name: "Classic Medal Trophy",
+        category: "trophy",
+        description: "Modern trophy design combining wood and acrylic for sports and academic recognition. The matte finish gives it a refined, timeless appearance suitable for any ceremony.",
+        material: "Wood + Acrylic",
+        size: "10 inches",
+        finish: "Matte Finish",
+        price: "₱599",
+        ribbon: "best",
+        sizes: ["8 inches", "10 inches", "12 inches"],
+        colors: ["#8B4513", "#3e2a33", "#FFD700"],
+        colorNames: ["Brown Wood", "Dark Wood", "Gold Accent"],
+        images: [
+          "images/trophy/b_trophy1.jpeg",
+          "images/trophy/b_trophy2.jpg",
+          "images/trophy/b_trophy6.jpeg"
+        ]
+      },
     ];
 
     const productsGrid = document.getElementById("productsGrid");
-
     let currentFilter = "all";
     let currentSearch = "";
 
     function getCategoryLabel(cat) {
-
-      const map = {
-        trophy: "Trophy",
-        poster: "Poster",
-        stationery: "Stationery"
-      };
-
+      const map = { trophy: "Trophy", poster: "Poster", stationery: "Stationery" };
       return map[cat] || cat;
     }
 
     function renderProducts() {
-
       let filtered = products;
 
       if (currentFilter !== "all") {
@@ -813,9 +1173,7 @@
       }
 
       if (currentSearch.trim() !== "") {
-
         const s = currentSearch.toLowerCase();
-
         filtered = filtered.filter(p =>
           p.name.toLowerCase().includes(s) ||
           p.description.toLowerCase().includes(s)
@@ -825,226 +1183,230 @@
       document.getElementById("productCount").innerText = filtered.length;
 
       if (filtered.length === 0) {
-
         productsGrid.innerHTML = `
-        <div class="empty-state">
-          <i class="fas fa-search"></i>
-          <h3>No products found</h3>
-        </div>
-      `;
-
+          <div class="empty-state">
+            <i class="fas fa-search"></i>
+            <h3>No products found</h3>
+          </div>`;
         return;
       }
 
       productsGrid.innerHTML = filtered.map(product => {
-
         let slidesHtml = "";
-
         product.images.forEach((img, index) => {
-
-          slidesHtml += `
-          <img
-            loading="lazy"
-            src="${img}"
-            class="slide-img ${index === 0 ? 'active' : ''}"
-            alt="${product.name}"
-          >
-        `;
+          slidesHtml += `<img loading="lazy" src="${img}" class="slide-img ${index === 0 ? 'active' : ''}" alt="${product.name}">`;
         });
 
         return `
-
-        <div class="product-card">
-
-          ${product.ribbon ? `
-            <div class="ribbon-wrapper">
-              <div class="ribbon">
-                ${product.ribbon === 'best' ? 'BEST SELLER' : 'NEW'}
+          <div class="product-card" data-id="${product.id}">
+            ${product.ribbon ? `
+              <div class="ribbon-wrapper">
+                <div class="ribbon">${product.ribbon === 'best' ? 'BEST SELLER' : 'NEW'}</div>
+              </div>` : ''}
+            <div class="slider-container">
+              <div class="slider-images">${slidesHtml}</div>
+              ${product.images.length > 1 ? `
+                <button class="slider-btn slider-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-btn slider-next"><i class="fas fa-chevron-right"></i></button>
+                <div class="image-counter"><span>1/${product.images.length}</span></div>
+              ` : ''}
+            </div>
+            <div class="card-content">
+              <div class="product-title">
+                <span>${product.name}</span>
+                <span class="badge-category">${getCategoryLabel(product.category)}</span>
+              </div>
+              <div class="product-desc">${product.description}</div>
+              <div class="product-meta">
+                <span>📏 ${product.size}</span>
+                <span>✨ ${product.finish}</span>
+                <span>🏆 ${product.material}</span>
+              </div>
+              <div class="price-tag">
+                Starts at ${product.price}
+                <span> · customizable</span>
+              </div>
+              <div class="action-row">
+                <button class="detail-link view-btn" data-id="${product.id}">
+                  <i class="fas fa-eye"></i> View Details
+                </button>
+                <a class="order-btn"
+                  href="${messengerLink}?text=Hi! I'm interested in ordering the ${encodeURIComponent(product.name)}"
+                  target="_blank">
+                  <i class="fab fa-facebook-messenger"></i> Order Now
+                </a>
               </div>
             </div>
-          ` : ''}
-
-          <div class="slider-container">
-
-            <div class="slider-images">
-              ${slidesHtml}
-            </div>
-
-            ${product.images.length > 1
-            ?
-            `
-                <button class="slider-btn slider-prev">
-                  <i class="fas fa-chevron-left"></i>
-                </button>
-
-                <button class="slider-btn slider-next">
-                  <i class="fas fa-chevron-right"></i>
-                </button>
-
-                <div class="image-counter">
-                  <span>1/${product.images.length}</span>
-                </div>
-              `
-            :
-            ''
-          }
-
-          </div>
-
-          <div class="card-content">
-
-            <div class="product-title">
-
-              <span>${product.name}</span>
-
-              <span class="badge-category">
-                ${getCategoryLabel(product.category)}
-              </span>
-
-            </div>
-
-            <div class="product-desc">
-              ${product.description}
-            </div>
-
-            <div class="product-meta">
-              <span>📏 ${product.size}</span>
-              <span>✨ ${product.finish}</span>
-              <span>🏆 ${product.material}</span>
-            </div>
-
-            <div class="price-tag">
-              Starts at ${product.price}
-              <span> · customizable</span>
-            </div>
-
-            <div class="action-row">
-
-              <button class="detail-link view-btn">
-                <i class="fas fa-eye"></i>
-                View
-              </button>
-
-              <a
-                class="order-btn"
-                href="${messengerLink}?text=Hi! I'm interested in ordering the ${encodeURIComponent(product.name)}"
-                target="_blank"
-              >
-                <i class="fab fa-facebook-messenger"></i>
-                Order Now
-              </a>
-
-            </div>
-
-          </div>
-
-        </div>
-      `;
-
+          </div>`;
       }).join("");
 
       initSliders();
-      initModal();
+      initViewButtons();
     }
 
     function initSliders() {
-
       document.querySelectorAll(".product-card").forEach(card => {
-
         const slides = card.querySelectorAll(".slide-img");
-
         if (slides.length <= 1) return;
 
         let current = 0;
-
         const prevBtn = card.querySelector(".slider-prev");
         const nextBtn = card.querySelector(".slider-next");
         const counter = card.querySelector(".image-counter span");
 
         function showSlide(index) {
-
-          slides.forEach(slide => slide.classList.remove("active"));
-
+          slides.forEach(s => s.classList.remove("active"));
           slides[index].classList.add("active");
-
           counter.textContent = `${index + 1}/${slides.length}`;
         }
 
-        prevBtn.addEventListener("click", () => {
-
-          current--;
-
-          if (current < 0) {
-            current = slides.length - 1;
-          }
-
+        prevBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          current = (current - 1 + slides.length) % slides.length;
           showSlide(current);
         });
 
-        nextBtn.addEventListener("click", () => {
-
-          current++;
-
-          if (current >= slides.length) {
-            current = 0;
-          }
-
+        nextBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          current = (current + 1) % slides.length;
           showSlide(current);
         });
       });
     }
 
-    function initModal() {
+    /* ─── Product Detail Modal ─── */
+    function openProductModal(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
 
-      const modal = document.getElementById("imageModal");
-      const modalImage = document.getElementById("modalImage");
+      // Ribbon
+      const ribbonEl = document.getElementById("modalRibbon");
+      ribbonEl.innerHTML = product.ribbon
+        ? `<div class="modal-ribbon">${product.ribbon === 'best' ? '🏆 BEST SELLER' : '🆕 NEW'}</div>`
+        : '';
 
+      // Name, category, desc
+      document.getElementById("modalName").textContent = product.name;
+      document.getElementById("modalCategory").textContent = getCategoryLabel(product.category);
+      document.getElementById("modalDesc").textContent = product.description;
+
+      // Meta chips
+      document.getElementById("modalMeta").innerHTML = `
+        <span>📏 ${product.size}</span>
+        <span>✨ ${product.finish}</span>
+        <span>🏆 ${product.material}</span>
+      `;
+
+      // Price
+      document.getElementById("modalPrice").innerHTML =
+        `${product.price} <span>· customizable</span>`;
+
+      // Images
+      const mainImg = document.getElementById("modalMainImg");
+      mainImg.src = product.images[0];
+      mainImg.alt = product.name;
+
+      const thumbsEl = document.getElementById("modalThumbs");
+      thumbsEl.innerHTML = product.images.map((img, i) => `
+        <img
+          src="${img}"
+          class="modal-thumb ${i === 0 ? 'active' : ''}"
+          alt="${product.name} image ${i + 1}"
+          data-index="${i}"
+        >
+      `).join("");
+
+      thumbsEl.querySelectorAll(".modal-thumb").forEach(thumb => {
+        thumb.addEventListener("click", () => {
+          mainImg.style.opacity = "0";
+          setTimeout(() => {
+            mainImg.src = product.images[thumb.dataset.index];
+            mainImg.style.opacity = "1";
+          }, 150);
+          thumbsEl.querySelectorAll(".modal-thumb").forEach(t => t.classList.remove("active"));
+          thumb.classList.add("active");
+        });
+      });
+
+      // Sizes
+      const sizesEl = document.getElementById("modalSizes");
+      sizesEl.innerHTML = (product.sizes || []).map((s, i) =>
+        `<button class="option-chip ${i === 0 ? 'selected' : ''}" data-type="size">${s}</button>`
+      ).join("");
+
+      // Colors
+      const colorsEl = document.getElementById("modalColors");
+      colorsEl.innerHTML = (product.colors || []).map((c, i) =>
+        `<button
+          class="color-chip ${i === 0 ? 'selected' : ''}"
+          style="background:${c};"
+          title="${product.colorNames ? product.colorNames[i] : c}"
+          data-type="color"
+          data-name="${product.colorNames ? product.colorNames[i] : c}"
+        ></button>`
+      ).join("");
+
+      // Chip selection toggle
+      sizesEl.addEventListener("click", e => {
+        if (!e.target.classList.contains("option-chip")) return;
+        sizesEl.querySelectorAll(".option-chip").forEach(c => c.classList.remove("selected"));
+        e.target.classList.add("selected");
+      });
+
+      colorsEl.addEventListener("click", e => {
+        if (!e.target.classList.contains("color-chip")) return;
+        colorsEl.querySelectorAll(".color-chip").forEach(c => c.classList.remove("selected"));
+        e.target.classList.add("selected");
+      });
+
+      // Order button
+      document.getElementById("modalOrderBtn").href =
+        `${messengerLink}?text=Hi! I'm interested in ordering the ${encodeURIComponent(product.name)}`;
+
+      // Open
+      document.getElementById("productModal").classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeProductModal() {
+      document.getElementById("productModal").classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    function initViewButtons() {
       document.querySelectorAll(".view-btn").forEach(btn => {
-
         btn.addEventListener("click", () => {
-
-          const card = btn.closest(".product-card");
-          const activeImage = card.querySelector(".slide-img.active");
-
-          modalImage.src = activeImage.src;
-
-          modal.classList.add("active");
+          openProductModal(parseInt(btn.dataset.id));
         });
-
       });
-
     }
 
-    document.getElementById("closeModal")
-      .addEventListener("click", () => {
+    document.getElementById("modalClose").addEventListener("click", closeProductModal);
 
-        document.getElementById("imageModal")
-          .classList.remove("active");
-      });
-
-    document.querySelectorAll(".filter-btn").forEach(btn => {
-
-      btn.addEventListener("click", () => {
-
-        document.querySelectorAll(".filter-btn")
-          .forEach(b => b.classList.remove("active"));
-
-        btn.classList.add("active");
-
-        currentFilter = btn.dataset.filter;
-
-        renderProducts();
-      });
-
+    document.getElementById("productModal").addEventListener("click", e => {
+      if (e.target === document.getElementById("productModal")) {
+        closeProductModal();
+      }
     });
 
-    document.getElementById("searchInput")
-      .addEventListener("input", (e) => {
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") closeProductModal();
+    });
 
-        currentSearch = e.target.value;
-
+    /* ─── Filters & Search ─── */
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        currentFilter = btn.dataset.filter;
         renderProducts();
       });
+    });
+
+    document.getElementById("searchInput").addEventListener("input", e => {
+      currentSearch = e.target.value;
+      renderProducts();
+    });
 
     renderProducts();
 

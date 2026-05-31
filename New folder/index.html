@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description"
+    content="Print & By You - Customize apparel, drinkware, bags, and more. Joy Prints & Crafts - Your custom print destination.">
+  <title>Print & By You | Joy Prints & Crafts</title>
+
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(145deg, #fefafc 0%, #fff0f5 100%);
+      color: #2d2a2b;
+      line-height: 1.4;
+    }
+
+    .main-container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* --- hero + brand merger (Joy Prints meets Print & By You) --- */
+    .hero-print {
+      text-align: center;
+      padding: 2rem 0 1rem;
+    }
+
+    .brand-block {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      background: white;
+      padding: 1.2rem 2rem;
+      border-radius: 100px;
+      border: 1px solid #ffd9e8;
+      box-shadow: 0 15px 30px rgba(231, 84, 128, 0.12);
+      margin-bottom: 1.5rem;
+    }
+
+    .print-logo-area {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: linear-gradient(135deg, #fff2f7, #ffeaf1);
+      padding: 0.5rem 1.8rem;
+      border-radius: 60px;
+    }
+
+    .print-icon {
+      font-size: 2.5rem;
+      color: #e75480;
+    }
+
+    .print-tagline h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #d43f6b, #e75480);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+
+    .print-tagline p {
+      font-size: 0.8rem;
+      color: #b34a6e;
+      font-weight: 600;
+    }
+
+    .joy-divider {
+      font-size: 1.8rem;
+      color: #ffb6d1;
+    }
+
+    .joy-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #fff5f9;
+      padding: 0.5rem 1.5rem;
+      border-radius: 60px;
+    }
+
+    .joy-badge img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      border-radius: 50%;
+      box-shadow: 0 6px 12px rgba(231,84,128,0.2);
+    }
+
+    .joy-badge span {
+      font-weight: 800;
+      color: #be5379;
+    }
+
+    .hero-sub-custom {
+      font-size: 1rem;
+      color: #b35c7c;
+      font-weight: 500;
+      margin-top: 0.5rem;
+    }
+
+    /* product categories banner (like "Our Products" from design) */
+    .product-categories-showcase {
+      background: white;
+      border-radius: 42px;
+      padding: 1.8rem 1.5rem;
+      margin: 2rem 0;
+      border: 1px solid #ffe0ed;
+      box-shadow: 0 12px 28px rgba(231,84,128,0.08);
+    }
+
+    .categories-title {
+      text-align: center;
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #e75480;
+      margin-bottom: 1.5rem;
+    }
+
+    .categories-title span {
+      background: #fff0f5;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+    }
+
+    .cat-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+
+    .cat-item {
+      background: #fef2f7;
+      border-radius: 60px;
+      padding: 0.7rem 1.6rem;
+      font-weight: 700;
+      color: #c6517c;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      transition: 0.2s;
+      border: 1px solid #ffe2ef;
+    }
+
+    .cat-item i {
+      font-size: 1.1rem;
+    }
+
+    .cat-item:hover {
+      background: #e75480;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* action bar + filtering */
+    .action-bar-print {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border-radius: 80px;
+      padding: 1rem 1.8rem;
+      margin: 1.5rem 0;
+      border: 1px solid #ffcce0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.2rem;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-pill {
+      border: none;
+      padding: 0.7rem 1.3rem;
+      border-radius: 50px;
+      background: white;
+      border: 1px solid #ffcee2;
+      cursor: pointer;
+      font-weight: 700;
+      color: #d1517e;
+      transition: 0.2s;
+    }
+
+    .filter-pill.active {
+      background: #e75480;
+      color: white;
+      border-color: #e75480;
+      box-shadow: 0 6px 12px rgba(231,84,128,0.3);
+    }
+
+    .search-area {
+      position: relative;
+      width: 280px;
+    }
+
+    .search-area i {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #e75480;
+    }
+
+    #searchInputPrint {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 2.7rem;
+      border-radius: 50px;
+      border: 1px solid #ffcce0;
+      outline: none;
+      font-family: inherit;
+      background: white;
+    }
+
+    .stats-line {
+      margin: 1rem 0;
+    }
+
+    .counter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff0f5;
+      padding: 0.5rem 1.4rem;
+      border-radius: 40px;
+      font-weight: 700;
+      color: #d15b89;
+    }
+
+    /* products grid (inspired by "All Products" + card design) */
+    .products-showcase {
+      margin: 2rem 0;
+    }
+
+    .product-grid-modern {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .product-card-new {
+      background: white;
+      border-radius: 32px;
+      overflow: hidden;
+      transition: 0.3s ease;
+      border: 1px solid #ffdae9;
+      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card-new:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 35px -12px rgba(231,84,128,0.2);
+    }
+
+    .img-slider-panel {
+      position: relative;
+      height: 280px;
+      background: #fff7fb;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .slide-imgs {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide-item {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 18px;
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+
+    .slide-item.active-slide {
+      opacity: 1;
+    }
+
+    .slider-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 34px;
+      height: 34px;
+      background: white;
+      border-radius: 50%;
+      border: none;
+      color: #e75480;
+      cursor: pointer;
+      z-index: 12;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+
+    .slider-prev-new {
+      left: 12px;
+    }
+
+    .slider-next-new {
+      right: 12px;
+    }
+
+    .img-counter-badge {
+      position: absolute;
+      bottom: 12px;
+      right: 14px;
+      background: rgba(0,0,0,0.65);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 24px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    .ribbon-print {
+      position: absolute;
+      top: 14px;
+      left: 0;
+      background: linear-gradient(130deg, #e75480, #ff82ae);
+      color: white;
+      padding: 6px 18px;
+      border-radius: 0 20px 20px 0;
+      font-size: 0.7rem;
+      font-weight: 800;
+      z-index: 15;
+    }
+
+    .info-panel {
+      padding: 1.3rem;
+      flex: 1;
+    }
+
+    .product-name-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 0.6rem;
+    }
+
+    .product-name-row h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #2d2a2b;
+    }
+
+    .cat-tag-mini {
+      background: #ffe2ef;
+      color: #c95a86;
+      padding: 0.25rem 0.9rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .desc-short {
+      font-size: 0.85rem;
+      color: #745a68;
+      margin: 0.6rem 0;
+      line-height: 1.4;
+    }
+
+    .specs-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.7rem 0;
+    }
+
+    .specs-row span {
+      background: #fff3f8;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #c95a86;
+    }
+
+    .price-style {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #e75480;
+      margin: 0.6rem 0;
+    }
+
+    .price-style small {
+      font-size: 0.7rem;
+      color: #a56f85;
+      font-weight: 500;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 1rem;
+      border-top: 1px solid #ffe2ef;
+      padding-top: 1rem;
+    }
+
+    .view-detail-btn {
+      background: white;
+      border: 1px solid #ffbed6;
+      padding: 0.7rem 1rem;
+      border-radius: 40px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #e75480;
+    }
+
+    .order-msg-btn {
+      background: #0084ff;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 700;
+      cursor: pointer;
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .order-msg-btn:hover {
+      background: #0070e0;
+      transform: translateY(-2px);
+    }
+
+    .empty-collection {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 3rem;
+      color: #c06d8e;
+    }
+
+    /* testimonial + footer */
+    .reviews-section {
+      margin: 4rem 0;
+    }
+
+    .reviews-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #e75480;
+      margin-bottom: 2rem;
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .review-card {
+      background: white;
+      border-radius: 28px;
+      padding: 1.5rem;
+      border: 1px solid #ffd4e6;
+    }
+
+    .footer-magic {
+      text-align: center;
+      padding: 2rem 0;
+      color: #bb7c98;
+      font-weight: 500;
+    }
+
+    .floating-messenger {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+    }
+
+    .messenger-icon {
+      width: 58px;
+      height: 58px;
+      background: #0084ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      text-decoration: none;
+    }
+
+    .modal-full {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .modal-full.active {
+      display: flex;
+    }
+
+    .modal-full img {
+      max-width: 85%;
+      max-height: 85%;
+      border-radius: 24px;
+      background: white;
+      padding: 10px;
+    }
+
+    .close-modal-x {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      width: 45px;
+      height: 45px;
+      background: white;
+      border-radius: 50%;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 1000px) {
+      .product-grid-modern {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .main-container {
+        padding: 0 20px;
+      }
+      .product-grid-modern {
+        grid-template-columns: 1fr;
+      }
+      .brand-block {
+        flex-direction: column;
+        border-radius: 48px;
+      }
+      .action-bar-print {
+        border-radius: 32px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .search-area {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="main-container">
+  <!-- Hero section: Merge "Print & By You" + Joy Prints -->
+  <div class="hero-print">
+    <div class="brand-block">
+      <div class="print-logo-area">
+        <i class="fas fa-print print-icon"></i>
+        <div class="print-tagline">
+          <h1>Print & By You</h1>
+          <p>CUSTOMIZE, PRINT, YOUR WAY.</p>
+        </div>
+      </div>
+      <div class="joy-divider">
+        <i class="fas fa-heart"></i>
+      </div>
+      <div class="joy-badge">
+        <!-- logo placeholder (using font awesome trophy as fallback, but keeps original spirit) -->
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23e75480'/%3E%3Ctext x='50' y='67' text-anchor='middle' fill='white' font-size='40' font-weight='bold'%3EJP%3C/text%3E%3C/svg%3E" alt="Joy Prints Logo">
+        <span>Joy Prints & Crafts</span>
+      </div>
+    </div>
+    <div class="hero-sub-custom">
+      <i class="fas fa-magic"></i> Your idea. Your style. Printed with love. · Premium crafts & custom gifts
+    </div>
+  </div>
+
+  <!-- Our Products section (inspired by the new design) -->
+  <div class="product-categories-showcase">
+    <div class="categories-title"><span>✨ Our Products ✨</span></div>
+    <div class="cat-grid">
+      <div class="cat-item"><i class="fas fa-tshirt"></i> Apparel</div>
+      <div class="cat-item"><i class="fas fa-mug-hot"></i> Drinkware</div>
+      <div class="cat-item"><i class="fas fa-bag-shopping"></i> Bags</div>
+      <div class="cat-item"><i class="fas fa-home"></i> Home & Living</div>
+      <div class="cat-item"><i class="fas fa-keychain"></i> Accessories</div>
+      <div class="cat-item"><i class="fas fa-pen-fancy"></i> Stationery</div>
+      <div class="cat-item"><i class="fas fa-gift"></i> Gifts & More</div>
+    </div>
+  </div>
+
+  <!-- filter & search bar -->
+  <div class="action-bar-print">
+    <div class="filter-group">
+      <button class="filter-pill active" data-filter-type="all">✨ All</button>
+      <button class="filter-pill" data-filter-type="apparel">👕 Apparel</button>
+      <button class="filter-pill" data-filter-type="drinkware">☕ Drinkware</button>
+      <button class="filter-pill" data-filter-type="accessory">🎒 Accessories</button>
+      <button class="filter-pill" data-filter-type="stationery">📓 Stationery</button>
+      <button class="filter-pill" data-filter-type="poster">🖼️ Posters</button>
+    </div>
+    <div class="search-area">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInputPrint" placeholder="Search 't-shirt', 'mug', 'poster'...">
+    </div>
+  </div>
+
+  <div class="stats-line">
+    <div class="counter-chip">
+      <i class="fas fa-palette"></i>
+      <span id="dynamicProductCount">0</span> unique creations
+    </div>
+  </div>
+
+  <!-- product grid -->
+  <div class="products-showcase">
+    <div id="unifiedProductsGrid" class="product-grid-modern"></div>
+  </div>
+
+  <!-- testimonials -->
+  <div class="reviews-section">
+    <div class="reviews-title">💬 What our creators say</div>
+    <div class="review-grid">
+      <div class="review-card">⭐⭐⭐⭐⭐ <br> “Amazing custom prints on hoodies and mugs! Fast delivery.” <br><strong>— Liam S.</strong></div>
+      <div class="review-card">⭐⭐⭐⭐⭐ <br> “The personalized tumbler is gorgeous. Love the quality.” <br><strong>— Sophia R.</strong></div>
+      <div class="review-card">⭐⭐⭐⭐⭐ <br> “Beautiful notebooks and posters. Will order again!” <br><strong>— Ethan K.</strong></div>
+    </div>
+  </div>
+
+  <footer class="footer-magic">
+    🖨️ Print & By You · Joy Prints & Crafts — custom made with heart 🌸
+  </footer>
+</div>
+
+<div class="floating-messenger">
+  <a class="messenger-icon" href="https://m.me/joyprintscrafts" target="_blank">
+    <i class="fab fa-facebook-messenger"></i>
+  </a>
+</div>
+
+<div class="modal-full" id="previewModal">
+  <button class="close-modal-x" id="closeModalBtn"><i class="fas fa-times"></i></button>
+  <img id="modalPreviewImg" src="" alt="preview">
+</div>
+
+<script>
+  // ----- MERGED DATASET: includes trophies + new print products: apparel, drinkware, accessories (caps, bags) & stationery + posters
+  const MESSENGER_LINK = "https://m.me/joyprintscrafts";
+
+  const productUniverse = [
+    // TROPHY / ORIGINAL collection (keeping JoyPrints classic)
+    { id: 1, name: "Golden Eagle Trophy", category: "accessory", typeLabel: "Trophy", description: "Premium Sintra trophy with elegant gold finish.", material: "Premium Sintra", size: "12 inches", finish: "Gold Finish", price: "₱499", ribbon: "best", images: ["https://placehold.co/400x400/ffe6ef/e75480?text=Golden+Trophy", "https://placehold.co/400x400/f7dfe8/e75480?text=Gold+Angle"] },
+    { id: 2, name: "Champion Trophy", category: "accessory", typeLabel: "Trophy", description: "Custom championship award for events.", material: "Acrylic", size: "15 inches", finish: "Gloss", price: "₱699", ribbon: "", images: ["https://placehold.co/400x400/ffdae9/e75480?text=Champion+Cup", "https://placehold.co/400x400/f3d2e1/e75480?text=Side+View"] },
+    { id: 3, name: "Classic Medal Trophy", category: "accessory", typeLabel: "Trophy", description: "Wood+acrylic modern trophy.", material: "Wood+Acrylic", size: "10 inches", finish: "Matte", price: "₱599", ribbon: "best", images: ["https://placehold.co/400x400/fce4ef/e75480?text=Classic+Medal", "https://placehold.co/400x400/fbe0ea/e75480?text=Wood+Base"] },
+    // new APPAREL (T-shirts, Hoodies) Inspired by Print & By You
+    { id: 4, name: "Custom Your Design T-Shirt", category: "apparel", typeLabel: "Apparel", description: "Premium cotton tee with your artwork. Soft and durable.", material: "100% Cotton", size: "S-XXL", finish: "Direct-to-Garment", price: "₱390", ribbon: "new", images: ["https://placehold.co/400x400/f7dbe8/e75480?text=T-Shirt+Mockup", "https://placehold.co/400x400/ffeef5/e75480?text=Custom+Print"] },
+    { id: 5, name: "Oversized Hoodie", category: "apparel", typeLabel: "Apparel", description: "Cozy hoodie personalized with any design.", material: "Polyester Blend", size: "XS-3XL", finish: "Embroidery/Print", price: "₱990", ribbon: "", images: ["https://placehold.co/400x400/fee6f0/e75480?text=Hoodie+Front", "https://placehold.co/400x400/fcdae8/e75480?text=Back+Print"] },
+    // DRINKWARE
+    { id: 6, name: "Magic Mug", category: "drinkware", typeLabel: "Drinkware", description: "Heat-sensitive color changing mug with your photo.", material: "Ceramic", size: "11 oz", finish: "Gloss Coating", price: "₱249", ribbon: "best", images: ["https://placehold.co/400x400/fadfec/e75480?text=Magic+Mug", "https://placehold.co/400x400/f2d2e1/e75480?text=After+Heat"] },
+    { id: 7, name: "Stainless Steel Tumbler", category: "drinkware", typeLabel: "Drinkware", description: "Vacuum insulated tumbler with custom wrap.", material: "Stainless Steel", size: "20 oz", finish: "Glossy Vinyl", price: "₱550", ribbon: "", images: ["https://placehold.co/400x400/ffe3f0/e75480?text=Tumbler+Design", "https://placehold.co/400x400/fbdae7/e75480?text=with+Lid"] },
+    // ACCESSORIES (caps, keychains, bags)
+    { id: 8, name: "Custom Cap", category: "accessory", typeLabel: "Cap", description: "Classic cap with embroidered logo or text.", material: "Cotton Twill", size: "Adjustable", finish: "3D Embroidery", price: "₱299", ribbon: "new", images: ["https://placehold.co/400x400/fce5ef/e75480?text=Cap+Mockup", "https://placehold.co/400x400/fadfec/e75480?text=Back+View"] },
+    { id: 9, name: "Tote Bag", category: "accessory", typeLabel: "Bag", description: "Eco-friendly tote with your design.", material: "Canvas", size: "15x16 inches", finish: "Screen Print", price: "₱350", ribbon: "", images: ["https://placehold.co/400x400/feeaf3/e75480?text=Tote+Bag+Art", "https://placehold.co/400x400/fcdbe8/e75480?text=Heavy+Duty"] },
+    { id: 10, name: "Personalized Keychain", category: "accessory", typeLabel: "Keychain", description: "Acrylic keychain with custom charm.", material: "Acrylic + Metal", size: "2.5 inches", finish: "Glossy", price: "₱99", ribbon: "", images: ["https://placehold.co/400x400/fce0eb/e75480?text=Keychain", "https://placehold.co/400x400/f6d3e2/e75480?text=Double+Sided"] },
+    // STATIONERY and POSTERS (merged)
+    { id: 11, name: "Aesthetic Notebook", category: "stationery", typeLabel: "Stationery", description: "Hardcover notebook customized with your name or quote.", material: "Paperboard", size: "A5", finish: "Soft-touch", price: "₱189", ribbon: "", images: ["https://placehold.co/400x400/fde4ef/e75480?text=Custom+Notebook", "https://placehold.co/400x400/ffebf3/e75480?text=Inside+Pages"] },
+    { id: 12, name: "Anime Poster Print", category: "poster", typeLabel: "Poster", description: "High-gloss anime wall art.", material: "Glossy Photo", size: "18x24 in", finish: "Glossy", price: "₱199", ribbon: "best", images: ["https://placehold.co/400x400/fad9e8/e75480?text=Anime+Poster", "https://placehold.co/400x400/f8d6e5/e75480?text=Wall+Display"] },
+    { id: 13, name: "Minimalist Art Print", category: "poster", typeLabel: "Poster", description: "Matte finish decor for modern spaces.", material: "Matte Paper", size: "24x36 in", finish: "Matte", price: "₱279", ribbon: "", images: ["https://placehold.co/400x400/feebf3/e75480?text=Abstract+Art", "https://placehold.co/400x400/fde1ec/e75480?text=Framed+Style"] },
+    { id: 14, name: "Sticker Pack (Custom)", category: "stationery", typeLabel: "Stationery", description: "Vinyl stickers, kiss-cut, any design.", material: "Vinyl", size: "Various", finish: "Waterproof", price: "₱120", ribbon: "", images: ["https://placehold.co/400x400/fde0ea/e75480?text=Custom+Stickers", "https://placehold.co/400x400/fad4e3/e75480?text=Sheet+View"] },
+    { id: 15, name: "Phone Case", category: "accessory", typeLabel: "Accessory", description: "Slim case with full wrap print.", material: "Polycarbonate", size: "All models", finish: "UV Print", price: "₱399", ribbon: "new", images: ["https://placehold.co/400x400/ffe2ef/e75480?text=Phone+Case", "https://placehold.co/400x400/fcdae7/e75480?text=Design+Mockup"] }
+  ];
+
+  let activeFilter = "all";
+  let activeSearch = "";
+
+  const gridContainer = document.getElementById("unifiedProductsGrid");
+  const productCounterSpan = document.getElementById("dynamicProductCount");
+
+  function getCategoryIcon(cat) {
+    if (cat === "apparel") return "👕";
+    if (cat === "drinkware") return "☕";
+    if (cat === "accessory") return "🎒";
+    if (cat === "stationery") return "📓";
+    if (cat === "poster") return "🖼️";
+    return "🏷️";
+  }
+
+  function renderUnifiedProducts() {
+    let filtered = [...productUniverse];
+    if (activeFilter !== "all") {
+      filtered = filtered.filter(p => p.category === activeFilter);
+    }
+    if (activeSearch.trim() !== "") {
+      const lowerSearch = activeSearch.toLowerCase();
+      filtered = filtered.filter(p => p.name.toLowerCase().includes(lowerSearch) || p.description.toLowerCase().includes(lowerSearch) || p.typeLabel.toLowerCase().includes(lowerSearch));
+    }
+    productCounterSpan.innerText = filtered.length;
+    if (filtered.length === 0) {
+      gridContainer.innerHTML = `<div class="empty-collection"><i class="fas fa-paintbrush"></i><h3>No custom products found</h3><p>Try another keyword or category</p></div>`;
+      return;
+    }
+
+    gridContainer.innerHTML = filtered.map(prod => {
+      const slidesHtml = prod.images.map((img, idx) => `<img loading="lazy" src="${img}" class="slide-item ${idx === 0 ? 'active-slide' : ''}" alt="${prod.name}">`).join("");
+      const hasMultiple = prod.images.length > 1;
+      const ribbonBadge = prod.ribbon === "best" ? '<div class="ribbon-print">🌟 BESTSELLER</div>' : (prod.ribbon === "new" ? '<div class="ribbon-print">✨ NEW</div>' : '');
+      return `
+        <div class="product-card-new" data-product-id="${prod.id}">
+          ${ribbonBadge}
+          <div class="img-slider-panel">
+            <div class="slide-imgs">${slidesHtml}</div>
+            ${hasMultiple ? `<button class="slider-nav slider-prev-new"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-nav slider-next-new"><i class="fas fa-chevron-right"></i></button>
+            <div class="img-counter-badge"><span class="counter-current">1</span>/${prod.images.length}</div>` : ""}
+          </div>
+          <div class="info-panel">
+            <div class="product-name-row">
+              <h3>${prod.name}</h3>
+              <span class="cat-tag-mini">${getCategoryIcon(prod.category)} ${prod.typeLabel}</span>
+            </div>
+            <div class="desc-short">${prod.description}</div>
+            <div class="specs-row"><span>📐 ${prod.size}</span><span>✨ ${prod.finish}</span><span>🧵 ${prod.material}</span></div>
+            <div class="price-style">${prod.price} <small>+ customization</small></div>
+            <div class="action-buttons">
+              <button class="view-detail-btn quick-view"><i class="fas fa-eye"></i> View</button>
+              <a class="order-msg-btn" href="${MESSENGER_LINK}?text=Hi! I'm interested in ordering the ${encodeURIComponent(prod.name)}" target="_blank"><i class="fab fa-facebook-messenger"></i> Order Now</a>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    attachSliderEvents();
+    attachModalViewEvents();
+  }
+
+  function attachSliderEvents() {
+    document.querySelectorAll(".product-card-new").forEach(card => {
+      const slides = card.querySelectorAll(".slide-item");
+      if (slides.length <= 1) return;
+      let idx = 0;
+      const prev = card.querySelector(".slider-prev-new");
+      const next = card.querySelector(".slider-next-new");
+      const counterSpan = card.querySelector(".counter-current");
+      const updateSlide = (newIdx) => {
+        slides.forEach(s => s.classList.remove("active-slide"));
+        slides[newIdx].classList.add("active-slide");
+        if (counterSpan) counterSpan.innerText = newIdx+1;
+        idx = newIdx;
+      };
+      prev?.addEventListener("click", (e) => { e.stopPropagation(); let nidx = idx-1; if(nidx<0) nidx=slides.length-1; updateSlide(nidx); });
+      next?.addEventListener("click", (e) => { e.stopPropagation(); let nidx = idx+1; if(nidx>=slides.length) nidx=0; updateSlide(nidx); });
+    });
+  }
+
+  function attachModalViewEvents() {
+    const modal = document.getElementById("previewModal");
+    const modalImg = document.getElementById("modalPreviewImg");
+    document.querySelectorAll(".quick-view").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const card = btn.closest(".product-card-new");
+        const activeSlide = card.querySelector(".slide-item.active-slide");
+        if (activeSlide) modalImg.src = activeSlide.src;
+        else modalImg.src = card.querySelector(".slide-item")?.src || "";
+        modal.classList.add("active");
+      });
+    });
+  }
+
+  document.getElementById("closeModalBtn").addEventListener("click", () => {
+    document.getElementById("previewModal").classList.remove("active");
+  });
+  document.getElementById("previewModal").addEventListener("click", (e) => {
+    if(e.target === document.getElementById("previewModal")) document.getElementById("previewModal").classList.remove("active");
+  });
+
+  // filtering
+  document.querySelectorAll(".filter-pill").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".filter-pill").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeFilter = btn.dataset.filterType;
+      renderUnifiedProducts();
+    });
+  });
+  document.getElementById("searchInputPrint").addEventListener("input", (e) => {
+    activeSearch = e.target.value;
+    renderUnifiedProducts();
+  });
+
+  renderUnifiedProducts();
+</script>
+</body>
+</html>
