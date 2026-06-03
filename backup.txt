@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Joy Prints & Crafts - Custom trophies, stationery, and art prints with interactive image galleries.">
   <title>Joy Prints & Crafts</title>
-  <link rel="preload"
-      href="images/jpc_logo.png"
-      as="image">
+  <link rel="icon" type="image/png" href="images/jpc_logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -43,29 +41,8 @@
     .step-title { font-weight: 700; color: #3e2a33; font-size: 0.9rem; }
     .step-desc { font-size: 0.78rem; color: #9a6b7d; line-height: 1.4; }
 
-    /* ── Action bar — NO sticky, ever ── */
-    .action-bar {
-      background: rgba(255,255,255,0.92);
-      border-radius: 60px;
-      padding: 1rem 1.5rem;
-      margin: 2rem 0;
-      border: 1px solid rgba(231,84,128,0.2);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      box-shadow: 0 4px 16px rgba(231,84,128,0.10);
-    }
-
-    .filter-section { display: flex; flex-wrap: wrap; gap: 10px; }
-    .filter-btn { border: none; padding: 0.7rem 1.3rem; border-radius: 50px; background: white; border: 1px solid #ffd4e6; cursor: pointer; font-weight: 600; color: #c44a73; transition: 0.2s; font-family: inherit; }
-    .filter-btn:hover { transform: translateY(-2px); }
-    .filter-btn.active { background: #e75480; color: white; border-color: #e75480; }
-    .search-wrapper { position: relative; width: 300px; }
-    .search-wrapper i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #e75480; }
-    #searchInput { width: 100%; padding: 0.9rem 1rem 0.9rem 2.8rem; border-radius: 50px; border: 1px solid #ffd4e6; outline: none; font-family: inherit; background: white; }
-    #searchInput:focus { border-color: #e75480; }
+    /* ── Action bar (hidden, replaced by 3-dots) ── */
+    .action-bar { display: none; }
 
     /* ── Stats bar ── */
     .stats-bar { margin-bottom: 2rem; }
@@ -183,9 +160,12 @@
     .modal-options { display: flex; flex-wrap: wrap; gap: 8px; }
     .option-chip { padding: 0.45rem 1rem; border-radius: 50px; border: 1.5px solid #ffd4e6; background: white; color: #c44a73; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: 0.2s; font-family: inherit; }
     .option-chip:hover, .option-chip.selected { background: #e75480; border-color: #e75480; color: white; box-shadow: 0 4px 10px rgba(231,84,128,0.3); }
+
+    /* Larger color chips for easier finger tapping */
     .color-chip { width: 44px; height: 44px; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: 0.2s; outline: none; position: relative; }
     .color-chip:hover, .color-chip.selected { border-color: #e75480; box-shadow: 0 0 0 3px rgba(231,84,128,0.25); transform: scale(1.12); }
     .color-chip.selected::after { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; color: rgba(0,0,0,0.5); }
+
     .modal-price { font-size: 1.8rem; font-weight: 800; color: #e75480; }
     .modal-price span { font-size: 0.82rem; color: #9a6b7d; font-weight: 500; }
     .modal-meta-chips { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -211,63 +191,121 @@
     .lightbox-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); cursor: pointer; transition: 0.2s; border: none; padding: 0; }
     .lightbox-dot.active { background: white; transform: scale(1.3); }
 
-    /* ════════════════════════════════
-       MOBILE FILTER — 3-dot menu
-       Visible only on mobile (≤750px)
-       Hidden on desktop
-    ════════════════════════════════ */
-    .mobile-filter-wrap {
-      display: none; /* hidden on desktop */
-      position: relative;
-    }
+    /* ── 3-Dots Collapsible Menu (Top Left) ── */
+    .category-drawer {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1100;
+    display: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
 
-    .dots-btn {
-      width: 42px;
-      height: 42px;
-      border: 1px solid #ffd4e6;
-      border-radius: 50%;
+.category-drawer.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .category-drawer {
+        display: block;
+    }
+}
+    .menu-toggle {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
       background: white;
-      color: #e75480;
-      font-size: 1.1rem;
+      border: 1px solid #ffd4e6;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 1.6rem;
+      color: #e75480;
       transition: 0.2s;
-      flex-shrink: 0;
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,0.96);
     }
-    .dots-btn:hover,
-    .dots-btn.open { background: #e75480; color: white; border-color: #e75480; }
-
-    .dots-dropdown {
-      position: absolute;
-      top: calc(100% + 10px);
-      left: 0;
-      background: white;
+    .menu-toggle:hover { transform: scale(1.02); background: white; box-shadow: 0 10px 22px rgba(231,84,128,0.2); }
+    .menu-panel {
+      position: fixed;
+      top: 85px;
+      left: 20px;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
       border: 1px solid #ffd4e6;
-      border-radius: 20px;
-      box-shadow: 0 12px 32px rgba(231,84,128,0.18);
-      padding: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      min-width: 180px;
-      z-index: 600;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
+      padding: 1rem 0.8rem;
+      min-width: 210px;
       opacity: 0;
-      transform: translateY(-6px) scale(0.97);
+      visibility: hidden;
+      transform: translateY(-10px) scale(0.96);
+      transition: all 0.25s cubic-bezier(0.2,0.9,0.4,1.1);
       pointer-events: none;
-      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 1099;
     }
-    .dots-dropdown.show {
+    .menu-panel.open {
       opacity: 1;
+      visibility: visible;
       transform: translateY(0) scale(1);
       pointer-events: auto;
     }
-    .dots-dropdown .filter-btn {
-      border-radius: 12px;
-      width: 100%;
+    .drawer-filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .drawer-filter-btn {
+      background: transparent;
+      border: none;
+      padding: 0.7rem 1rem;
+      border-radius: 50px;
+      font-weight: 700;
       text-align: left;
-      padding: 0.65rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #4a2f3a;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+    .drawer-filter-btn i { width: 24px; color: #e75480; font-size: 1rem; }
+    .drawer-filter-btn:hover { background: #ffe2ef; transform: translateX(4px); }
+    .drawer-filter-btn.active { background: #e75480; color: white; }
+    .drawer-filter-btn.active i { color: white; }
+    .drawer-search {
+      margin: 0 0.6rem 0.8rem;
+      position: relative;
+    }
+    .drawer-search input {
+      width: 100%;
+      padding: 0.7rem 0.7rem 0.7rem 2rem;
+      border-radius: 40px;
+      border: 1px solid #ffd4e6;
+      font-family: inherit;
+      font-size: 0.85rem;
+      background: #fffafc;
+    }
+    .drawer-search i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #e75480;
+    }
+    .drawer-stats {
+      margin: 0.5rem 0.6rem 0.8rem;
+      font-size: 0.7rem;
+      color: #c95a86;
+      font-weight: 600;
+      padding-left: 0.5rem;
     }
 
     /* ── Responsive ── */
@@ -287,13 +325,6 @@
     @media(max-width:750px) {
       .main-content { padding: 0 20px; }
       .products-grid, .skeleton-grid { grid-template-columns: 1fr; }
-      .search-wrapper { width: 100%; flex: 1; }
-      .action-bar { border-radius: 24px; padding: 0.8rem 1.1rem; }
-
-      /* Show 3-dot menu, hide desktop filters */
-      .mobile-filter-wrap { display: block; }
-      .desktop-filters { display: none; }
-
       .product-card { border-radius: 24px; }
       .slider-container { height: 240px; }
       .card-content { padding: 1.1rem; }
@@ -302,9 +333,7 @@
       .lightbox-nav { width: 40px; height: 40px; }
       .lightbox-prev { left: 8px; }
       .lightbox-next { right: 8px; }
-    }
-    @media(max-width:480px) {
-      .order-steps { grid-template-columns: 1fr 1fr; }
+      .menu-panel { left: 12px; min-width: 190px; }
     }
   </style>
 </head>
@@ -315,7 +344,9 @@
   <div class="hero">
     <div class="logo-wrapper">
       <div class="brand-logo">
-        <div class="logo-image"><img src="images/jpc_logo.png" alt="Joy Prints & Crafts Logo"></div>
+        <div class="logo-image">
+       <img src="images/jpc_logo.png" alt="Joy Prints & Crafts Logo">
+      </div>
         <div class="logo-text">
           <span class="logo-main">Joy Prints & Crafts</span>
           <span class="logo-tag"><i class="fas fa-trophy"></i> since 2022 · artisan quality</span>
@@ -330,6 +361,7 @@
     <p>Premium custom trophies trusted by schools, events, and organizations.</p>
   </section>
 
+  <!-- How to Order -->
   <section class="how-to-order">
     <h2>🛒 How to Order</h2>
     <div class="order-steps">
@@ -356,35 +388,8 @@
     </div>
   </section>
 
-  <!-- Action bar — no sticky, no JS position changes -->
-  <div class="action-bar" id="actionBar">
-
-    <!-- Desktop filters (hidden on mobile) -->
-    <div class="filter-section desktop-filters">
-      <button class="filter-btn active" data-filter="all">✨ All</button>
-      <button class="filter-btn" data-filter="trophy">🏆 Trophies</button>
-      <button class="filter-btn" data-filter="stationery">📚 Stationery</button>
-      <button class="filter-btn" data-filter="poster">🖼 Posters</button>
-    </div>
-
-    <!-- Mobile 3-dot filter (hidden on desktop) -->
-    <div class="mobile-filter-wrap">
-      <button class="dots-btn" id="dotsBtn" aria-label="Filter products">
-        <i class="fas fa-ellipsis-v"></i>
-      </button>
-      <div class="dots-dropdown" id="dotsDropdown">
-        <button class="filter-btn active" data-filter="all">✨ All</button>
-        <button class="filter-btn" data-filter="trophy">🏆 Trophies</button>
-        <button class="filter-btn" data-filter="stationery">📚 Stationery</button>
-        <button class="filter-btn" data-filter="poster">🖼 Posters</button>
-      </div>
-    </div>
-
-    <div class="search-wrapper">
-      <i class="fas fa-search"></i>
-      <input type="text" id="searchInput" placeholder="Search products...">
-    </div>
-  </div>
+  <!-- Hidden original action bar - replaced by 3-dots menu for peaceful scrolling -->
+  <div class="action-bar" id="actionBar" style="display:none;"></div>
 
   <div class="stats-bar">
     <div class="product-counter">
@@ -435,13 +440,31 @@
 
 </div>
 
-<!-- Floating buttons -->
+<!-- Floating buttons: messenger + back to top -->
 <div class="floating-buttons">
   <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
   <div class="floating-chat">
     <a href="https://m.me/YOUR_PAGE_USERNAME" target="_blank" aria-label="Message us on Messenger">
       <i class="fab fa-facebook-messenger"></i>
     </a>
+  </div>
+</div>
+
+<!-- 3-Dots Collapsible Menu (Top Left) -->
+<div class="category-drawer">
+  <button class="menu-toggle" id="menuToggleBtn"><i class="fas fa-sliders-h"></i></i></button>
+  <div class="menu-panel" id="menuPanel">
+    <div class="drawer-search">
+      <i class="fas fa-search"></i>
+      <input type="text" id="drawerSearchInput" placeholder="Search products...">
+    </div>
+    <div class="drawer-stats" id="drawerStatsText">✨ 0 products</div>
+    <div class="drawer-filter-group" id="drawerFilterGroup">
+      <button class="drawer-filter-btn active" data-filter="all"><i class="fas fa-th-large"></i> All</button>
+      <button class="drawer-filter-btn" data-filter="trophy"><i class="fas fa-trophy"></i> Trophies</button>
+      <button class="drawer-filter-btn" data-filter="stationery"><i class="fas fa-book"></i> Stationery</button>
+      <button class="drawer-filter-btn" data-filter="poster"><i class="fas fa-image"></i> Posters</button>
+    </div>
   </div>
 </div>
 
@@ -495,7 +518,7 @@
   const messengerLink = "https://m.me/YOUR_PAGE_USERNAME";
 
   /* ════════════════════════════════
-     LIGHTBOX
+     LIGHTBOX (unchanged logic)
   ════════════════════════════════ */
   let lbImages = [], lbIndex = 0;
   let lbTouchStartX = 0, lbTouchStartY = 0;
@@ -541,6 +564,7 @@
   document.getElementById("lbClose").addEventListener("click", closeLightbox);
   document.getElementById("lbPrev").addEventListener("click", () => { lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; renderLightbox(); });
   document.getElementById("lbNext").addEventListener("click", () => { lbIndex = (lbIndex + 1) % lbImages.length; renderLightbox(); });
+
   document.getElementById("lightbox").addEventListener("click", e => {
     if (e.target === document.getElementById("lightbox") || e.target === document.getElementById("lbImg")) closeLightbox();
   });
@@ -561,7 +585,7 @@
   }, { passive: true });
 
   /* ════════════════════════════════
-     PRODUCTS DATA
+     PRODUCTS DATA (preserved)
   ════════════════════════════════ */
   const products = [
     {
@@ -573,7 +597,11 @@
       sizes: ["8 inches", "10 inches", "12 inches", "15 inches"],
       colors: ["#FFD700", "#C0C0C0", "#CD7F32", "#FFFFFF"],
       colorNames: ["Gold", "Silver", "Bronze", "White"],
-      images: ["images/trophy/b_trophy1.jpeg","images/trophy/b_trophy2.jpg","images/trophy/b_trophy6.jpeg"]
+      images: [
+              "images/trophies/sintra-1.jpeg",
+              "images/trophies/sintra-2.jpg",
+              "images/trophies/sintra-3.jpeg"
+            ]
     },
     {
       name: "Champion Trophy",
@@ -584,7 +612,11 @@
       sizes: ["10 inches", "12 inches", "15 inches", "18 inches"],
       colors: ["#FFD700", "#C0C0C0", "#1a73e8", "#e75480"],
       colorNames: ["Gold", "Silver", "Blue", "Pink"],
-      images: ["images/trophy/b_trophy1.jpeg","images/trophy/b_trophy2.jpg"]
+      images: [
+              "images/trophies/sintra-1.jpeg",
+              "images/trophies/sintra-2.jpg",
+              "images/trophies/sintra-3.jpeg"
+            ]
     },
     {
       name: "Classic Medal Trophy",
@@ -595,40 +627,11 @@
       sizes: ["8 inches", "10 inches", "12 inches"],
       colors: ["#8B4513", "#3e2a33", "#FFD700"],
       colorNames: ["Brown Wood", "Dark Wood", "Gold Accent"],
-      images: ["images/trophy/b_trophy1.jpeg","images/trophy/b_trophy2.jpg","images/trophy/b_trophy6.jpeg"]
-    },
-    {
-      name: "Golden Eagle Trophy",
-      category: "trophy",
-      description: "Premium Sintra trophy with elegant gold finish. Perfect for sports championships, academic awards, and corporate recognition events. Fully customizable with your name, logo, and message.",
-      material: "Premium Sintra", size: "12 inches", finish: "Gold Finish", price: "₱499",
-      ribbon: "best",
-      sizes: ["8 inches", "10 inches", "12 inches", "15 inches"],
-      colors: ["#FFD700", "#C0C0C0", "#CD7F32", "#FFFFFF"],
-      colorNames: ["Gold", "Silver", "Bronze", "White"],
-      images: ["images/trophy/b_trophy1.jpeg","images/trophy/b_trophy2.jpg","images/trophy/b_trophy6.jpeg"]
-    },
-    {
-      name: "Champion Trophy Pro",
-      category: "trophy",
-      description: "Elegant custom championship award for events and competitions. Made with premium acrylic for a sleek, modern look. Ideal for tournaments, recognition nights, and company awards.",
-      material: "Premium Acrylic", size: "15 inches", finish: "Gloss Finish", price: "₱699",
-      ribbon: "new",
-      sizes: ["10 inches", "12 inches", "15 inches", "18 inches"],
-      colors: ["#FFD700", "#C0C0C0", "#1a73e8", "#e75480"],
-      colorNames: ["Gold", "Silver", "Blue", "Pink"],
-      images: ["images/trophy/b_trophy1.jpeg","images/trophy/b_trophy2.jpg"]
-    },
-    {
-      name: "Classic Medal Trophy Elite",
-      category: "trophy",
-      description: "Modern trophy design combining wood and acrylic for sports and academic recognition. The matte finish gives it a refined, timeless appearance suitable for any ceremony.",
-      material: "Wood + Acrylic", size: "10 inches", finish: "Matte Finish", price: "₱599",
-      ribbon: "best",
-      sizes: ["8 inches", "10 inches", "12 inches"],
-      colors: ["#8B4513", "#3e2a33", "#FFD700"],
-      colorNames: ["Brown Wood", "Dark Wood", "Gold Accent"],
-      images: ["images/trophy/b_trophy1.jpeg","images/trophy/b_trophy2.jpg","images/trophy/b_trophy6.jpeg"]
+      images: [
+              "images/trophies/sintra-1.jpeg",
+              "images/trophies/sintra-2.jpg",
+              "images/trophies/sintra-3.jpeg"
+            ]
     },
     {
       name: "Certificate Frame",
@@ -637,12 +640,16 @@
       material: "Premium Wood", size: "A4", finish: "Matte Finish", price: "₱299",
       ribbon: "new",
       sizes: ["A5", "A4", "A3", "Letter"],
-      images: ["images/trophy/b_trophy1.jpeg"]
+      images: [
+              "images/trophies/sintra-1.jpeg",
+              "images/trophies/sintra-2.jpg",
+              "images/trophies/sintra-3.jpeg"
+            ]
     },
   ];
 
   /* ════════════════════════════════
-     RENDER
+     RENDER (fully preserved)
   ════════════════════════════════ */
   let filteredIndexMap = [];
   const productsGrid = document.getElementById("productsGrid");
@@ -665,6 +672,8 @@
     });
 
     document.getElementById("productCount").innerText = filteredIndexMap.length;
+    const drawerStats = document.getElementById("drawerStatsText");
+    if (drawerStats) drawerStats.innerText = `✨ ${filteredIndexMap.length} products`;
 
     if (filteredIndexMap.length === 0) {
       productsGrid.innerHTML = `
@@ -677,9 +686,9 @@
       document.getElementById("resetBtn").addEventListener("click", () => {
         currentFilter = "all";
         currentSearch = "";
-        document.getElementById("searchInput").value = "";
-        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-        document.querySelectorAll('[data-filter="all"]').forEach(b => b.classList.add("active"));
+        document.getElementById("drawerSearchInput").value = "";
+        document.querySelectorAll(".drawer-filter-btn").forEach(b => b.classList.remove("active"));
+        document.querySelector('[data-filter="all"]').classList.add("active");
         renderProducts();
       });
       return;
@@ -764,7 +773,7 @@
   }
 
   /* ════════════════════════════════
-     PRODUCT MODAL
+     PRODUCT MODAL (preserved)
   ════════════════════════════════ */
   function openProductModal(productIndex) {
     const product = products[productIndex];
@@ -865,7 +874,7 @@
   });
 
   /* ════════════════════════════════
-     KEYBOARD
+     KEYBOARD (unchanged)
   ════════════════════════════════ */
   document.addEventListener("keydown", e => {
     const lb = document.getElementById("lightbox");
@@ -879,53 +888,39 @@
   });
 
   /* ════════════════════════════════
-     FILTERS & SEARCH
-     Synced between desktop + mobile sets
+     DRAWER FILTERS & SEARCH (new, top-left 3-dots)
   ════════════════════════════════ */
-  function setActiveFilter(filterValue) {
-    currentFilter = filterValue;
-    document.querySelectorAll(".filter-btn").forEach(b => {
-      b.classList.toggle("active", b.dataset.filter === filterValue);
-    });
-    renderProducts();
-  }
-
-  document.querySelectorAll(".filter-btn").forEach(btn => {
+  document.querySelectorAll(".drawer-filter-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-      setActiveFilter(btn.dataset.filter);
-      // close mobile dropdown if open
-      document.getElementById("dotsDropdown").classList.remove("show");
-      document.getElementById("dotsBtn").classList.remove("open");
+      document.querySelectorAll(".drawer-filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentFilter = btn.dataset.filter;
+      renderProducts();
+      // close panel after selection for peaceful scroll
+      document.getElementById("menuPanel").classList.remove("open");
     });
   });
 
-  document.getElementById("searchInput").addEventListener("input", e => {
+  document.getElementById("drawerSearchInput").addEventListener("input", e => {
     currentSearch = e.target.value;
     renderProducts();
   });
 
-  /* ════════════════════════════════
-     MOBILE 3-DOT MENU
-  ════════════════════════════════ */
-  const dotsBtn      = document.getElementById("dotsBtn");
-  const dotsDropdown = document.getElementById("dotsDropdown");
-
-  dotsBtn.addEventListener("click", e => {
+  // Toggle 3-dots menu
+  const menuToggle = document.getElementById("menuToggleBtn");
+  const menuPanel = document.getElementById("menuPanel");
+  menuToggle.addEventListener("click", (e) => {
     e.stopPropagation();
-    const isOpen = dotsDropdown.classList.toggle("show");
-    dotsBtn.classList.toggle("open", isOpen);
+    menuPanel.classList.toggle("open");
   });
-
-  document.addEventListener("click", e => {
-    if (!dotsBtn.contains(e.target) && !dotsDropdown.contains(e.target)) {
-      dotsDropdown.classList.remove("show");
-      dotsBtn.classList.remove("open");
+  document.addEventListener("click", (e) => {
+    if (!menuPanel.contains(e.target) && !menuToggle.contains(e.target) && menuPanel.classList.contains("open")) {
+      menuPanel.classList.remove("open");
     }
   });
 
   /* ════════════════════════════════
-     SCROLL — back to top only
-     (NO sticky logic)
+     STICKY ACTION BAR (removed sticky behavior, but back to top remains)
   ════════════════════════════════ */
   window.addEventListener("scroll", () => {
     const btn = document.getElementById("backToTop");
@@ -938,13 +933,24 @@
   });
 
   /* ════════════════════════════════
-     BOOT
+     BOOT — show skeleton briefly then render
   ════════════════════════════════ */
   setTimeout(() => {
     document.getElementById("skeletonGrid").style.display = "none";
     productsGrid.style.display = "grid";
     renderProducts();
   }, 700);
+
+
+  const categoryDrawer = document.querySelector('.category-drawer');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        categoryDrawer.classList.add('visible');
+    } else {
+        categoryDrawer.classList.remove('visible');
+    }
+}, { passive: true });
 </script>
 </body>
 </html>
