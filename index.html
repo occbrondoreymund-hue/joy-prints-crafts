@@ -568,34 +568,32 @@
       name: "Sintra Trophy (3D Stand)",
       category: "trophy",
       description: "Premium Sintra trophy with elegant gold finish. Perfect for sports championships, academic awards, and corporate recognition events. Fully customizable with your name, logo, and message.",
-      material: "Premium Sintra", size: "12 inches", finish: "Gold Finish", price: "₱499",
+      material: "Premium Sintra", size: "12 inches", finish: "Gloss Finish", price: "₱499",
       ribbon: "best",
       sizes: ["8 inches", "10 inches", "12 inches", "15 inches"],
-      colors: ["#FFD700", "#C0C0C0", "#CD7F32", "#FFFFFF"],
-      colorNames: ["Gold", "Silver", "Bronze", "White"],
-      images: ["images/trophy/b_trophy1.jpeg","images/trophy/b_trophy2.jpg","images/trophy/b_trophy6.jpeg"]
+      // colors: ["#FFD700", "#C0C0C0", "#CD7F32", "#FFFFFF"],
+      // colorNames: ["Gold", "Silver", "Bronze", "White"],
+      images: ["images/trophies/3D/sintra-1.jpeg","images/trophies/3D/sintra-2.jpg","images/trophies/3D/sintra-3.jpeg"]
     },
     {
-      name: "Champion Trophy",
+      name: "Sintra Trophy (Flat Stand)",
       category: "trophy",
-      description: "Elegant custom championship award for events and competitions. Made with premium acrylic for a sleek, modern look. Ideal for tournaments, recognition nights, and company awards.",
-      material: "Premium Acrylic", size: "15 inches", finish: "Gloss Finish", price: "₱699",
-      ribbon: "new",
-      sizes: ["10 inches", "12 inches", "15 inches", "18 inches"],
-      colors: ["#FFD700", "#C0C0C0", "#1a73e8", "#e75480"],
-      colorNames: ["Gold", "Silver", "Blue", "Pink"],
-      images: ["images/trophy/b_trophy1.jpeg","images/trophy/b_trophy2.jpg"]
+      description: "Premium Sintra trophy with elegant gold finish. Perfect for sports championships, academic awards, and corporate recognition events. Fully customizable with your name, logo, and message.",
+      material: "Premium Sintra", size: "12 inches", finish: "Gloss Finish", price: "₱499",
+      ribbon: "best",
+      sizes: ["8 inches", "10 inches", "12 inches", "15 inches"],
+      images: ["images/trophies/3D/sintra-1.jpeg","images/trophies/3D/sintra-2.jpg","images/trophies/3D/sintra-3.jpeg"]
     },
     {
-      name: "Classic Medal Trophy",
-      category: "trophy",
+      name: "Photo Tiles (Box-Type)",
+      category: "photo-tiles",
       description: "Modern trophy design combining wood and acrylic for sports and academic recognition. The matte finish gives it a refined, timeless appearance suitable for any ceremony.",
       material: "Wood + Acrylic", size: "10 inches", finish: "Matte Finish", price: "₱599",
       ribbon: "best",
       sizes: ["8 inches", "10 inches", "12 inches"],
-      colors: ["#8B4513", "#3e2a33", "#FFD700"],
-      colorNames: ["Brown Wood", "Dark Wood", "Gold Accent"],
-      images: ["images/trophy/b_trophy1.jpeg","images/trophy/b_trophy2.jpg","images/trophy/b_trophy6.jpeg"]
+      // colors: ["#8B4513", "#3e2a33", "#FFD700"],
+      // colorNames: ["Brown Wood", "Dark Wood", "Gold Accent"],
+      images: ["images/photo_tiles/box/1.jpg","images/photo_tiles/box/1.jpg","images/photo_tiles/box/1.jpg"]
     },
     {
       name: "Golden Eagle Trophy",
@@ -710,7 +708,6 @@
             </div>
             <div class="product-desc">${product.description}</div>
             <div class="product-meta">
-              <span>📏 ${product.size}</span>
               <span>✨ ${product.finish}</span>
               <span>🏆 ${product.material}</span>
             </div>
@@ -776,8 +773,8 @@
     document.getElementById("modalName").textContent     = product.name;
     document.getElementById("modalCategory").textContent = getCategoryLabel(product.category);
     document.getElementById("modalDesc").textContent     = product.description;
-    document.getElementById("modalMeta").innerHTML = `<span>📏 ${product.size}</span><span>✨ ${product.finish}</span><span>🏆 ${product.material}</span>`;
-    document.getElementById("modalPrice").innerHTML = `${product.price} <span>· customizable</span>`;
+    document.getElementById("modalMeta").innerHTML = `</span><span>✨ ${product.finish}</span><span>🏆 ${product.material}</span>`;
+    // document.getElementById("modalPrice").innerHTML = `${product.price} <span>· customizable</span>`;
 
     const mainImg = document.getElementById("modalMainImg");
     mainImg.src = product.images[0];
